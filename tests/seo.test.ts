@@ -61,3 +61,37 @@ describe('hard rule 8: structured data', () => {
     expect(head('/cowboys-radiator')).not.toContain('application/ld+json');
   });
 });
+
+describe('link previews', () => {
+  it('the GTS page offers a card, at the size a large card wants', () => {
+    const h = head('/');
+    expect(h).toContain('<meta property="og:image" content="https://gts-diesel.com/og-gts.png" />');
+    expect(h).toContain('<meta property="og:image:width" content="1200" />');
+    expect(h).toContain('<meta property="og:image:height" content="630" />');
+    expect(h).toContain('<meta name="twitter:image"');
+  });
+
+  it('gives the image an absolute URL, which every scraper requires', () => {
+    const srcs = [...head('/').matchAll(/(?:og:image|twitter:image)" content="([^"]+)"/g)].map((m) => m[1]);
+    expect(srcs.length).toBeGreaterThan(0);
+    for (const s of srcs) expect(s).toMatch(/^https:\/\/gts-diesel\.com\//);
+  });
+
+  it('describes the card for anyone who cannot see it', () => {
+    expect(head('/')).toMatch(/<meta property="og:image:alt" content=".+" \/>/);
+  });
+
+  it('gives Cowboys no card, rather than borrowing GTS branding', () => {
+    // Its logo and colours are brief blank 10.
+    expect(head('/cowboys-radiator')).not.toContain('og:image');
+  });
+});
+
+describe('structured data images', () => {
+  it('uses the mark as logo and real photographs as image', () => {
+    const s = autoRepairSchema();
+    expect(s.logo).toMatch(/gts-logo-white-on-ink\.png$/);
+    expect(Array.isArray(s.image)).toBe(true);
+    for (const i of s.image) expect(i).toMatch(/^https:\/\/gts-diesel\.com\/uploads\/.+\.jpg$/);
+  });
+});

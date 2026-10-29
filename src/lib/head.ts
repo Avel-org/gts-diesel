@@ -3,12 +3,26 @@ import { autoRepairSchema } from './schema';
 
 const ORIGIN = 'https://gts-diesel.com';
 
-const meta: Record<string, { title: string; description: string; path: string }> = {
+type PageMeta = {
+  title: string;
+  description: string;
+  path: string;
+  /** The link-preview card, where we have one. */
+  ogImage?: { src: string; width: number; height: number; alt: string };
+};
+
+const meta: Record<string, PageMeta> = {
   '/': {
     title: `${business.name} | 24/7 Roadside, Marietta GA`,
     description:
       'Emergency diesel truck and trailer repair in Marietta, GA. Roadside up to 100 miles, OEM computer diagnostics, open 24 hours. Call (770) 771-3468.',
     path: '/',
+    ogImage: {
+      src: '/og-gts.png',
+      width: 1200,
+      height: 630,
+      alt: 'GTS Truck & Trailer Repair',
+    },
   },
   '/404': {
     title: 'Page not found | GTS Diesel Truck & Trailer Repair',
@@ -43,6 +57,19 @@ export function head(url: string): string {
     `<meta property="og:url" content="${ORIGIN}${m.path}" />`,
     `<meta name="twitter:card" content="summary_large_image" />`,
   ];
+
+  // Link previews. Only the GTS page has a card: Cowboys has no logo or
+  // colours yet (brief blank 10), and borrowing GTS branding for a different
+  // business would misrepresent it.
+  if (m.ogImage) {
+    tags.push(
+      `<meta property="og:image" content="${ORIGIN}${m.ogImage.src}" />`,
+      `<meta property="og:image:width" content="${m.ogImage.width}" />`,
+      `<meta property="og:image:height" content="${m.ogImage.height}" />`,
+      `<meta property="og:image:alt" content="${esc(m.ogImage.alt)}" />`,
+      `<meta name="twitter:image" content="${ORIGIN}${m.ogImage.src}" />`,
+    );
+  }
   // Only GTS carries the AutoRepair schema; Cowboys has no sourced NAP yet.
   if (url === '/') {
     tags.push(

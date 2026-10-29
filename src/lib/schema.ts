@@ -12,7 +12,13 @@ export function autoRepairSchema(origin = 'https://gts-diesel.com') {
     legalName: business.legal,
     url: origin,
     telephone: business.phoneDisplay,
-    image: `${origin}/uploads/gts-logo-white-on-ink.png`,
+    logo: `${origin}/uploads/gts-logo-white-on-ink.png`,
+    // schema.org wants photographs of the business here, not the mark.
+    image: [
+      `${origin}/uploads/service-truck-yard.jpg`,
+      `${origin}/uploads/roadside-brake-job.jpg`,
+      `${origin}/uploads/engine-out.jpg`,
+    ],
     address: {
       '@type': 'PostalAddress',
       streetAddress: business.street,
