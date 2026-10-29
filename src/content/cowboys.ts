@@ -33,8 +33,6 @@ export const cowboys: PageContent = {
 
   proof: [blank('Cowboys proof point 1'), blank('Cowboys proof point 2')],
 
-  townsServed: blank('Cowboys towns served list'),
-
   servicesTitle: site('Radiators and cooling.'),
   specRow: blank('Cowboys hours', 'Marietta, GA · Hours: blank'),
 

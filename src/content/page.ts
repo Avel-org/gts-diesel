@@ -1,4 +1,4 @@
-import type { Blank, Claim } from './types';
+import type { Claim } from './types';
 
 /** A real photograph we have the rights to use. */
 export type Photo = {
@@ -59,8 +59,6 @@ export type PageContent = {
   fleetPhoto: Claim<Photo>;
   shopPhoto: Claim<Photo>;
   proof: Claim<string>[];
-  /** Towns served: never list a town we cannot source. */
-  townsServed: Blank;
   servicesTitle: Claim<string>;
   specRow: Claim<string>;
   services: Service[];

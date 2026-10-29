@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { cowboys, gts } from '../src/content';
+import { cowboys, gts, openQuestions } from '../src/content';
 import { collectBlanks, isBlank } from '../src/content/types';
 import type { Claim } from '../src/content/types';
 import type { PageContent } from '../src/content/page';
@@ -68,7 +68,6 @@ describe('open blanks are discoverable', () => {
   it('GTS still has the four known gaps', () => {
     const needs = collectBlanks(gts, 'gts').map((b) => b.need);
     expect(needs).toContain('Payment methods accepted');
-    expect(needs).toContain('Towns served list');
     // The three review blanks are closed: real Google reviews now fill them.
     expect(needs.filter((n) => n.startsWith('Customer review'))).toHaveLength(0);
     expect(gts.reviews.filter((r) => !isBlank(r))).toHaveLength(3);

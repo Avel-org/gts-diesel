@@ -8,7 +8,7 @@ import type { Blank } from './types';
  */
 export const openQuestions: Blank[] = [
   blank('Vector logo — we only have a raster white-on-ink PNG from the handoff'),
-  blank('Highways served, not just towns, for the service-area section'),
+  blank('Towns and highways served inside the 100-mile radius — the service-area section states the radius only, with no list'),
   blank('"DPS system repairs" on his old site: is it DPF (diesel particulate filter)? Do not print DPF until he confirms'),
   blank('The 573-855-0518 WhatsApp number on his old site: still current, or remove it'),
   blank('Commercial trucks only, or personal vehicles too — his old site said both'),

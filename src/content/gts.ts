@@ -47,8 +47,6 @@ export const gts: PageContent = {
     site('$200 referral discounts'),
   ],
 
-  townsServed: blank('Towns served list'),
-
   servicesTitle: site('Trucks, trailers, fleets.'),
   specRow: site('Radius: 100 mi · Hours: 24/7 · Diagnostics: OEM'),
 

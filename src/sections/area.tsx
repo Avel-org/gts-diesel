@@ -21,7 +21,6 @@ export function ServiceArea({ content }: { content: PageContent }) {
               isBlank(l) ? <BlankSlot key={i} claim={l} /> : <span key={i} className="block">{l.value}</span>,
             )}
           </address>
-          <BlankSlot as="div" claim={content.townsServed} className="p-4 rounded-card w-full" />
         </div>
         <PhotoFrame claim={content.shopPhoto} className="aspect-[4/3]" />
       </div>
