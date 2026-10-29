@@ -3,7 +3,7 @@ import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 
 type Vercel = {
-  redirects: Array<{ source: string; destination: string; permanent: boolean }>;
+  redirects: Array<{ source: string; destination: string; statusCode: number }>;
   headers: Array<{ source: string; headers: Array<{ key: string; value: string }> }>;
 };
 
@@ -18,8 +18,9 @@ describe('old site paths', () => {
     expect(sources).toContain('/contact');
   });
 
-  it('every redirect is a permanent 301', () => {
-    for (const r of config.redirects) expect(r.permanent, `${r.source} is not a 301`).toBe(true);
+  it('every redirect is a literal 301', () => {
+    // `permanent: true` would emit 308; AC18 asks for 301.
+    for (const r of config.redirects) expect(r.statusCode, `${r.source}`).toBe(301);
   });
 
   it('every redirect lands somewhere on the new page', () => {

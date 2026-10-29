@@ -9,52 +9,52 @@
     {
       "source": "/emergency-roadside-repair",
       "destination": "/#services",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/computer-diagnostics",
       "destination": "/#services",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/general-truck-repair",
       "destination": "/#services",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/trailer-repair",
       "destination": "/#services",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/fleet-services",
       "destination": "/#fleet",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/service-area",
       "destination": "/#area",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/referral",
       "destination": "/#why",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/contact",
       "destination": "/#quote",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/index.html",
       "destination": "/",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/home",
       "destination": "/",
-      "permanent": true
+      "statusCode": 301
     }
   ],
   "headers": [
