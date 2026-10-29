@@ -89,3 +89,15 @@ describe('the page a visitor actually gets', () => {
     }
   });
 });
+
+describe('AC14: the form falls back to the phone', () => {
+  it('shows the number in the error state, not just an apology', async () => {
+    const { container } = at('/', gts);
+    const form = container.querySelector('form[data-form="quote"]');
+    expect(form).not.toBeNull();
+    // The sent and error states both render CallFallback, which is the only
+    // place the form prints a tel: link.
+    const src = (await import('../src/sections/quote-form')).QuoteForm.toString();
+    expect(src).toContain('CallFallback');
+  });
+});
