@@ -1,0 +1,11 @@
+{
+  "description": "Section order and anchors from design-spec.json -> sectionOrder.",
+  "anchors": ["#services", "#fleet", "#area", "#faq", "#quote"],
+  "headings": [
+    "Diesel truck & trailer repair. Day or night.",
+    "Broken down right now?",
+    "Trucks, trailers, fleets.",
+    "Three steps. One call.",
+    "Questions"
+  ]
+}

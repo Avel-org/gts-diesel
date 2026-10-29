@@ -1,0 +1,71 @@
+/* app.css — Tailwind CSS v4 */
+@import "tailwindcss";
+@import "./tokens.css";
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-text: var(--text);
+  --color-text-muted: var(--text-muted);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-primary: var(--primary-bg);
+  --color-primary-fg: var(--primary-fg);
+  --font-display: var(--font-display);
+  --font-sans: var(--font-body);
+  --font-mono: var(--font-mono);
+  --radius-card: var(--radius);
+  --radius-input: var(--radius-sm);
+  --ease-out: var(--ease-out);
+  --breakpoint-md: 48rem;   /* 768px: mobile ↔ desktop */
+}
+
+@utility h-display {
+  font-family: var(--font-display); font-weight: 900;
+  font-stretch: 75%; text-transform: uppercase;
+  letter-spacing: -0.01em; text-wrap: balance; line-height: .92;
+}
+@utility label-mono {
+  font-family: var(--font-mono); font-size: .75rem;
+  text-transform: uppercase; letter-spacing: .1em;
+  color: var(--text-muted);
+}
+
+@layer base {
+  /* Without this the dark tokens render on the browser's white canvas. */
+  html { background: var(--bg); scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 400 16px/1.55 var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+}
+
+/* shadcn/ui variable bridge */
+:root {
+  --background: var(--bg);        --foreground: var(--text);
+  --card: var(--surface);         --card-foreground: var(--text);
+  --popover: var(--surface-2);    --popover-foreground: var(--text);
+  --primary: var(--primary-bg);   --primary-foreground: var(--primary-fg);
+  --secondary: var(--surface-2);  --secondary-foreground: var(--text);
+  --muted: var(--surface-2);      --muted-foreground: var(--text-muted);
+  --accent-foreground: var(--accent-ink);
+  --destructive: var(--text);     /* no red; errors = text + rule */
+  --input: var(--surface-2);      --ring: var(--focus);
+  --radius: 0.5rem;
+}
+
+/* Button (cva) variants
+default  : bg-primary text-primary-fg border border-primary
+           hover:bg-[--primary-hover] active:scale-[.98]
+outline  : border border-text-muted text-text hover:bg-surface-2
+onAccent : bg-accent-ink text-accent
+link     : shadow-[inset_0_-2px_0_var(--accent)] gts-arrowlink
+size.call: h-14 px-6 text-base gap-2.5                         */

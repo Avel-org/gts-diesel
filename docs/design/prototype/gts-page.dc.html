@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="gts-tokens.css">
+<script src="./image-slot.js"></script>
+</helmet>
+<div ref="{{ rootRef }}" data-theme="{{ theme }}" data-brand="{{ brand }}" data-primary="{{ lightPrimary }}" onScroll="{{ onScroll }}" style="width:{{ widthPx }};height:{{ frameH }};overflow:{{ frameOverflow }};position:relative;background:var(--bg);color:var(--text);font:400 16px/1.55 var(--font-body);-webkit-font-smoothing:antialiased;box-sizing:border-box;scrollbar-width:none">
+
+<sc-if value="{{ showMobileHeader }}" hint-placeholder-val="{{ true }}">
+<header data-screen-label="Header" style="position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:10px;height:64px;padding:0 {{ pad }};background:var(--bg);border-bottom:1px solid var(--border);box-sizing:border-box">
+  <sc-if value="{{ isGts }}" hint-placeholder-val="{{ true }}">
+  <a href="#top" aria-label="GTS Truck &amp; Trailer Repair" style="display:block;position:relative;width:118px;height:38px;overflow:hidden;border-radius:4px;background:var(--b-ink);flex:none"><img src="uploads/gts-logo-white-on-ink.png" alt="" style="position:absolute;left:-9px;top:-10px;width:146px;height:60px"></a>
+  </sc-if>
+  <sc-if value="{{ isCowboys }}" hint-placeholder-val="{{ false }}">
+  <a href="#top" style="display:flex;flex-direction:column;line-height:1;text-decoration:none;color:var(--text)">
+    <span style="font:900 26px/1 var(--font-display);font-stretch:75%;letter-spacing:-.01em;text-transform:uppercase">{{ copy.name }}</span>
+    <span style="font:500 9px/1 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);margin-top:3px">{{ copy.sub }}</span>
+  </a>
+  </sc-if>
+  <span style="display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 8px;border:1px solid var(--border);border-radius:4px;background:var(--surface-2);font:500 10px/1 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;color:var(--text)"><span class="gts-beacon" style="width:6px;height:6px;border-radius:50%;background:var(--accent);border:1px solid var(--rule)"></span>Open 24/7</span>
+  <nav style="display:{{ navLinks }};gap:28px;margin-left:auto;font:500 14px/1 var(--font-body)">
+    <a href="#services" style="text-decoration:none;color:var(--text-muted);padding:8px 0" style-hover="color:var(--text)">Services</a>
+    <a href="#fleet" style="text-decoration:none;color:var(--text-muted);padding:8px 0" style-hover="color:var(--text)">Fleet</a>
+    <a href="#area" style="text-decoration:none;color:var(--text-muted);padding:8px 0" style-hover="color:var(--text)">Service area</a>
+    <a href="#faq" style="text-decoration:none;color:var(--text-muted);padding:8px 0" style-hover="color:var(--text)">FAQ</a>
+  </nav>
+  <div style="display:flex;align-items:center;gap:8px;margin-left:{{ headerRightMl }}">
+    
+    <a href="{{ copy.tel }}" aria-label="Call {{ copy.phone }}" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;height:44px;min-width:44px;padding:0 {{ headerCallPad }};flex:none;border-radius:6px;background:var(--primary-bg);color:var(--primary-fg);border:1px solid var(--primary-border);text-decoration:none;font:700 14px/1 var(--font-body)" style-hover="background:var(--primary-hover)" style-active="transform:scale(.97)">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+      <span style="display:{{ navLinks }}">{{ copy.phone }}</span>
+    </a>
+  </div>
+</header>
+</sc-if>
+<sc-if value="{{ showDesktopHeader }}" hint-placeholder-val="{{ false }}">
+<header data-screen-label="Header (desktop)" style="position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--border)">
+  <div style="display:flex;justify-content:space-between;align-items:center;gap:24px;height:32px;padding:0 {{ pad }};border-bottom:1px solid var(--border);background:var(--surface);font:500 11px/1 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted)">
+    <span style="display:inline-flex;align-items:center;gap:8px;color:var(--text)"><span class="gts-beacon" style="width:6px;height:6px;border-radius:50%;background:var(--accent);border:1px solid var(--rule)"></span>Open 24/7 · Dispatch live</span>
+    <span>{{ copy.specRow }}</span>
+    <span>{{ copy.address1 }}, {{ copy.address2 }}</span>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:32px;height:80px;padding:0 {{ pad }}">
+    <div style="display:flex;align-items:center;gap:16px">
+      <sc-if value="{{ isGts }}" hint-placeholder-val="{{ true }}">
+      <a href="#top" aria-label="GTS Truck &amp; Trailer Repair, home" style="display:block;position:relative;width:168px;height:52px;overflow:hidden;border-radius:6px;background:var(--b-ink);flex:none"><img src="uploads/gts-logo-white-on-ink.png" alt="" style="position:absolute;left:-13px;top:-14px;width:205px;height:84px"></a>
+      </sc-if>
+      <sc-if value="{{ isCowboys }}" hint-placeholder-val="{{ false }}">
+      <a href="#top" style="display:flex;flex-direction:column;line-height:1;text-decoration:none;color:var(--text)">
+        <span style="font:900 30px/1 var(--font-display);font-stretch:75%;letter-spacing:-.01em;text-transform:uppercase">{{ copy.name }}</span>
+        <span style="font:500 10px/1 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);margin-top:4px">{{ copy.sub }}</span>
+      </a>
+      </sc-if>
+    </div>
+    <nav aria-label="Primary" style="display:flex;align-items:center;gap:32px">
+      <a href="#services" style="position:relative;display:inline-flex;align-items:center;gap:8px;height:80px;padding:0 4px;text-decoration:none;color:var(--text-muted);font:600 15px/1 var(--font-body);transition:color .15s" style-hover="color:var(--text)" class="gts-navlink"><span style="font:500 10px/1 var(--font-mono);letter-spacing:.06em;color:var(--text-muted)">01</span>Services</a>
+      <a href="#fleet" style="position:relative;display:inline-flex;align-items:center;gap:8px;height:80px;padding:0 4px;text-decoration:none;color:var(--text-muted);font:600 15px/1 var(--font-body);transition:color .15s" style-hover="color:var(--text)" class="gts-navlink"><span style="font:500 10px/1 var(--font-mono);letter-spacing:.06em;color:var(--text-muted)">02</span>Fleet</a>
+      <a href="#area" style="position:relative;display:inline-flex;align-items:center;gap:8px;height:80px;padding:0 4px;text-decoration:none;color:var(--text-muted);font:600 15px/1 var(--font-body);transition:color .15s" style-hover="color:var(--text)" class="gts-navlink"><span style="font:500 10px/1 var(--font-mono);letter-spacing:.06em;color:var(--text-muted)">03</span>Service area</a>
+      <a href="#faq" style="position:relative;display:inline-flex;align-items:center;gap:8px;height:80px;padding:0 4px;text-decoration:none;color:var(--text-muted);font:600 15px/1 var(--font-body);transition:color .15s" style-hover="color:var(--text)" class="gts-navlink"><span style="font:500 10px/1 var(--font-mono);letter-spacing:.06em;color:var(--text-muted)">04</span>FAQ</a>
+    </nav>
+    <div style="display:flex;align-items:center;justify-content:flex-end;gap:12px">
+      
+      <a href="{{ copy.tel }}" style="display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 18px;border-radius:var(--radius);background:var(--primary-bg);color:var(--primary-fg);border:1px solid var(--primary-border);text-decoration:none;font:700 15px/1 var(--font-body);white-space:nowrap" style-hover="background:var(--primary-hover)" style-active="transform:scale(.97)">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        {{ copy.phone }}
+      </a>
+    </div>
+  </div>
+</header>
+</sc-if>
+
+<sc-if value="{{ show.hero }}" hint-placeholder-val="{{ true }}">
+<section data-screen-label="Hero" data-theme="dark" style="position:relative;isolation:isolate;background:var(--bg);color:var(--text);padding:{{ heroPadY }} {{ pad }};overflow:hidden">
+  <div aria-hidden="true" style="position:absolute;inset:0;background-image:var(--grain);opacity:{{ grainOpacity }};pointer-events:none;z-index:0"></div>
+  <div style="position:relative;z-index:1;display:grid;grid-template-columns:{{ heroCols }};gap:{{ heroGap }};align-items:end">
+    <div style="display:flex;flex-direction:column;gap:24px;min-width:0">
+      <p style="margin:0;font:500 12px/1.4 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);display:flex;align-items:center;gap:12px"><span class="gts-scan" style="width:48px;height:2px;background:var(--accent);flex:none"></span>{{ copy.eyebrow }}</p>
+      <h1 style="margin:0;font:900 {{ heroH1 }}/.92 var(--font-display);font-stretch:75%;letter-spacing:-.01em;text-transform:uppercase;text-wrap:balance;color:var(--text)">{{ h1 }}</h1>
+      <p style="margin:0;max-width:52ch;font-size:{{ heroSub }};line-height:1.55;color:var(--text-muted);text-wrap:pretty">{{ copy.subhead }}</p>
+      <div style="display:flex;flex-wrap:wrap;gap:12px">
+        <a class="gts-signal" ref="{{ heroBtnRef }}" href="{{ copy.tel }}" style="display:inline-flex;align-items:center;justify-content:center;width:{{ btnW }};box-sizing:border-box;gap:10px;min-height:56px;padding:0 24px;border-radius:var(--radius);background:var(--primary-bg);color:var(--primary-fg);border:1px solid var(--primary-border);text-decoration:none;font:700 16px/1 var(--font-body);letter-spacing:.005em" style-hover="background:var(--primary-hover)" style-active="transform:scale(.98)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          Call 24/7 · {{ copy.phone }}
+        </a>
+        <a href="#quote" style="display:inline-flex;align-items:center;justify-content:center;width:{{ btnW }};box-sizing:border-box;gap:10px;min-height:56px;padding:0 22px;border-radius:var(--radius);background:transparent;color:var(--text);border:1px solid var(--text-muted);text-decoration:none;font:600 16px/1 var(--font-body)" style-hover="background:var(--surface-2)" style-active="transform:scale(.98)">{{ copy.ghostLabel }}</a>
+      </div>
+      <ul style="list-style:none;margin:8px 0 0;padding:16px 0 0;border-top:1px solid var(--border);display:flex;flex-direction:{{ proofDir }};flex-wrap:wrap;gap:10px 24px;font:500 11px/1.4 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted)">
+        <sc-for list="{{ copy.proof }}" as="p" hint-placeholder-count="3">
+          <li style="display:flex;align-items:center;justify-content:space-between;gap:12px"><span style="color:var(--text)">{{ p.label }}</span><span style="white-space:nowrap;flex:none;font-size:9px;padding:2px 6px;border:1px solid var(--border);border-radius:3px;background:var(--surface-2);color:var(--text-muted)">to confirm</span></li>
+        </sc-for>
+      </ul>
+    </div>
+    <div style="position:relative;aspect-ratio:{{ heroPhotoAr }};border-radius:var(--radius);overflow:hidden;background:var(--surface);border:1px solid var(--border)"><image-slot id="{{ copy.slot.hero }}" shape="rect" placeholder="{{ copy.heroPhoto }}" style="position:absolute;inset:0;width:100%;height:100%"></image-slot></div>
+  </div>
+</section>
+</sc-if>
+
+<sc-if value="{{ show.emergency }}" hint-placeholder-val="{{ true }}">
+<section data-screen-label="Emergency band" data-theme="dark" style="background:var(--accent);color:var(--accent-ink);position:relative">
+  <div aria-hidden="true" style="height:12px;background:var(--hazard)"></div>
+  <div style="padding:{{ bandPadY }} {{ pad }};display:grid;grid-template-columns:{{ cols2 }};gap:{{ heroGap }};align-items:start">
+    <div>
+      <p style="margin:0 0 12px;font:500 12px/1.4 var(--font-mono);letter-spacing:.1em;text-transform:uppercase">Emergency roadside</p>
+      <h2 style="margin:0;font:900 {{ h2 }}/.95 var(--font-display);font-stretch:75%;letter-spacing:-.01em;text-transform:uppercase;text-wrap:balance">Broken down within 100 miles of Marietta?</h2>
+      <p style="margin:16px 0 0;max-width:46ch;font-size:16px;line-height:1.55">We roll to you, any hour. “We'll do a clutch on the side of the road.”</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <p style="margin:0;font:500 12px/1.4 var(--font-mono);letter-spacing:.1em;text-transform:uppercase">Have ready</p>
+      <ol style="margin:0;padding:0;list-style:none;display:grid;gap:8px;border-top:1px solid var(--accent-ink)">
+        <li style="display:flex;gap:16px;padding:10px 0;border-bottom:1px solid var(--accent-ink);font-weight:600"><span style="font:600 13px/1.6 var(--font-mono)">01</span>Your location or mile marker</li>
+        <li style="display:flex;gap:16px;padding:10px 0;border-bottom:1px solid var(--accent-ink);font-weight:600"><span style="font:600 13px/1.6 var(--font-mono)">02</span>Truck and trailer type</li>
+        <li style="display:flex;gap:16px;padding:10px 0;border-bottom:1px solid var(--accent-ink);font-weight:600"><span style="font:600 13px/1.6 var(--font-mono)">03</span>What happened</li>
+      </ol>
+      <a href="{{ copy.tel }}" style="display:inline-flex;align-self:{{ btnAlign }};align-items:center;justify-content:center;gap:10px;min-height:56px;padding:0 24px;border-radius:var(--radius);background:var(--accent-ink);color:var(--accent);border:1px solid var(--accent-ink);text-decoration:none;font:700 16px/1 var(--font-body)" style-hover="background:var(--surface-2)" style-active="transform:scale(.98)">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        Call 24/7 · {{ copy.phone }}
+      </a>
+    </div>
+  </div>
+</section>
+</sc-if>
+
+<sc-if value="{{ show.services }}" hint-placeholder-val="{{ true }}">
+<section id="services" data-screen-label="Services" style="padding:{{ bandPadY }} {{ pad }};background-color:var(--bg);background-image:linear-gradient(var(--grid-line) 1px,transparent 1px),linear-gradient(90deg,var(--grid-line) 1px,transparent 1px);background-size:48px 48px">
+  <div style="display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:12px;margin-bottom:28px">
+    <div>
+      <p style="margin:0 0 10px;font:500 12px/1.4 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted)">Services</p>
+      <h2 style="margin:0;font:900 {{ h2 }}/.95 var(--font-display);font-stretch:75%;letter-spacing:-.01em;text-transform:uppercase;text-wrap:balance">{{ copy.servicesTitle }}</h2>
+    </div>
+    <ul style="margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px;font:500 10px/1 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--text)"><sc-for list="{{ copy.specItems }}" as="si" hint-placeholder-count="3"><li style="padding:7px 9px;border:1px solid var(--border);border-radius:4px;background:var(--surface)">{{ si }}</li></sc-for></ul>
+  </div>
+  <div style="display:grid;grid-template-columns:{{ bentoCols }};grid-auto-rows:auto;gap:12px">
+    <sc-for list="{{ copy.services }}" as="s" hint-placeholder-count="5">
+      <article style="grid-column:{{ s.col }};grid-row:{{ s.row }};display:flex;flex-direction:column;gap:14px;padding:22px;background:var(--surface);border:1px solid var(--border);border-top:2px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);transition:border-top-color .2s" style-hover="border-top-color:var(--accent)">
+        <sc-if value="{{ s.photo }}" hint-placeholder-val="{{ false }}">
+          <div style="position:relative;aspect-ratio:{{ s.ar }};border-radius:var(--radius-sm);overflow:hidden;background:var(--surface-2);border:1px solid var(--border)"><image-slot id="{{ s.slot }}" shape="rect" placeholder="{{ s.photo }}" style="position:absolute;inset:0;width:100%;height:100%"></image-slot></div>
+        </sc-if>
+        <div style="width:40px;height:40px;display:grid;place-items:center;border-radius:var(--radius-sm);background:var(--surface-2);border:1px solid var(--border);color:var(--mark)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="{{ s.icon }}"></path></svg></div>
+        <div>
+          <h3 style="margin:0 0 6px;font:800 {{ h3 }}/1 var(--font-display);font-stretch:75%;letter-spacing:-.005em;text-transform:uppercase">{{ s.title }}</h3>
+          <p style="margin:0;color:var(--text-muted);font-size:15px">{{ s.benefit }}</p>
+        </div>
+        <ul style="margin:0;padding:0;list-style:none;display:grid;gap:6px;font-size:14px">
+          <sc-for list="{{ s.items }}" as="it" hint-placeholder-count="3">
+            <li style="display:flex;gap:10px;align-items:flex-start"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;color:var(--mark);flex:none;margin-top:3px"><path d="M20 6 9 17l-5-5"></path></svg>{{ it }}</li>
+          </sc-for>
+        </ul>
+        <a href="{{ copy.tel }}" style="margin-top:auto;display:inline-flex;align-items:center;gap:6px;align-self:flex-start;min-height:44px;color:var(--text);font:600 14px/1 var(--font-body);text-decoration:none;box-shadow:inset 0 -2px 0 var(--rule)" class="gts-arrowlink">Call about this <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></a>
+      </article>
+    </sc-for>
+  </div>
+</section>
+</sc-if>
+
+<sc-if value="{{ show.how }}" hint-placeholder-val="{{ true }}">
+<section data-screen-label="How it works" style="padding:{{ bandPadY }} {{ pad }};background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div style="display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:16px;margin-bottom:{{ headMb }}">
+    <div><p class="gts-reveal" style="margin:0 0 12px;display:flex;align-items:center;gap:12px;font:500 12px/1.4 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted)"><span style="width:20px;height:2px;background:var(--accent);flex:none"></span>How it works</p><h2 class="gts-reveal" style="margin:0 0 0;font:900 {{ h2 }}/.95 var(--font-display);font-stretch:75%;letter-spacing:-.01em;text-transform:uppercase;text-wrap:balance">{{ copy.howTitle }}</h2></div>
+    <p style="margin:0;max-width:38ch;color:var(--text-muted);font-size:15px">From the first call to back on the road. Same process at 2 p.m. or 2 a.m.</p>
+  </div>
+  <ol style="margin:0;padding:0;list-style:none;display:grid;grid-template-columns:{{ cols3 }};gap:{{ stepGap }};position:relative">
+    <sc-for list="{{ copy.steps }}" as="st" hint-placeholder-count="3">
+      <li class="gts-reveal" style="position:relative;display:grid;grid-template-columns:{{ stepInner }};gap:16px 18px;align-items:start">
+        <div style="position:relative;display:flex;flex-direction:{{ stepRailDir }};align-items:{{ stepRailAlign }};gap:0;align-self:stretch">
+          <span style="position:relative;z-index:1;display:grid;place-items:center;width:56px;height:56px;border:1px solid var(--accent);border-radius:var(--radius-sm);background:var(--bg);font:600 20px/1 var(--font-mono);color:var(--accent);flex:none">{{ st.n }}</span>
+          <span aria-hidden="true" style="flex:1;min-width:16px;min-height:16px;background-image:{{ st.rail }};background-size:{{ railSize }};background-repeat:{{ railRepeat }};background-position:center;opacity:{{ st.railOpacity }}"></span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px;padding-bottom:{{ stepPadB }}">
+          <span style="font:500 10px/1 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--accent)">{{ st.meta }}</span>
+          <h3 style="margin:0;font:800 {{ h3 }}/1 var(--font-display);font-stretch:75%;text-transform:uppercase">{{ st.title }}</h3>
+          <p style="margin:0;color:var(--text-muted);font-size:15px;max-width:34ch">{{ st.body }}</p>
+        </div>
+      </li>
+    </sc-for>
+  </ol>
+</section>
+</sc-if>
+
+<sc-if value="{{ show.fleet }}" hint-placeholder-val="{{ true }}">
+<section id="fleet" data-screen-label="Fleet" style="padding:{{ bandPadY }} {{ pad }};background-color:var(--bg);background-image:linear-gradient(var(--grid-line) 1px,transparent 1px),linear-gradient(90deg,var(--grid-line) 1px,transparent 1px);background-size:48px 48px">
+  <div style="display:grid;grid-template-columns:{{ fleetCols }};gap:{{ heroGap }};align-items:stretch">
+    <div style="display:flex;flex-direction:column;gap:20px;min-width:0">
+      <div><p class="gts-reveal" style="margin:0 0 12px;display:flex;align-items:center;gap:12px;font:500 12px/1.4 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted)"><span style="width:20px;height:2px;background:var(--accent);flex:none"></span>Fleet services</p><h2 class="gts-reveal" style="margin:0 0 0;font:900 {{ h2 }}/.95 var(--font-display);font-stretch:75%;letter-spacing:-.01em;text-transform:uppercase;text-wrap:balance">Keep the whole fleet moving.</h2></div>
+      <p style="margin:0;max-width:52ch;color:var(--text-muted);font-size:17px">Tailored contracts, special pricing and 24/7 support. Shop pricing when you can bring it in, roadside when you can't.</p>
+      <ul style="margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:8px;font:500 11px/1 var(--font-mono);letter-spacing:.08em;text-transform:uppercase">
+        <sc-for list="{{ fleetTypes }}" as="ft" hint-placeholder-count="5"><li style="display:inline-flex;align-items:center;gap:8px;padding:9px 11px;border:1px solid var(--border);border-radius:4px;background:var(--surface)"><span style="width:4px;height:4px;background:var(--accent)"></span>{{ ft }}</li></sc-for>
+      </ul>
+      <div class="gts-reveal" style="position:relative;flex:1;min-height:{{ fleetPhotoH }};border-radius:var(--radius);overflow:hidden;background:var(--surface-2);border:1px solid var(--border)"><image-slot id="{{ copy.slot.fleet }}" shape="rect" placeholder="{{ copy.fleetPhoto }}" style="position:absolute;inset:0;width:100%;height:100%"></image-slot></div>
+    </div>
+    <aside class="gts-reveal" style="position:relative;display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--border);border-top:2px solid var(--accent);border-radius:var(--radius);overflow:hidden">
+      <div style="padding:24px 24px 8px;display:flex;flex-direction:column;gap:10px">
+        <span style="font:500 10px/1 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted)">Fleet account</span>
+        <h3 style="margin:0;font:800 {{ h3 }}/1 var(--font-display);font-stretch:75%;text-transform:uppercase">Set up a fleet account</h3>
+        <p style="margin:0;color:var(--text-muted);font-size:15px">Free phone consultation. Tell us what you run and we'll put a contract together.</p>
+      </div>
+      <dl style="margin:8px 0 0;padding:0 24px;display:grid">
+        <sc-for list="{{ fleetSpecs }}" as="fs" hint-placeholder-count="3">
+          <div style="display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-top:1px solid var(--border)">
+            <dt style="font:500 11px/1.4 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted)">{{ fs.k }}</dt>
+            <dd style="margin:0;font:600 15px/1.4 var(--font-body);text-align:right">{{ fs.v }}</dd>
+          </div>
+        </sc-for>
+      </dl>
+      <div style="margin-top:auto;padding:20px 24px 24px;display:flex;flex-direction:column;gap:10px;border-top:1px solid var(--border);background:var(--surface-2)">
+        <a href="{{ copy.tel }}" style="display:inline-flex;align-self:{{ btnAlign }};align-items:center;justify-content:center;gap:10px;min-height:56px;padding:0 24px;border-radius:var(--radius);background:var(--primary-bg);color:var(--primary-fg);border:1px solid var(--primary-border);text-decoration:none;font:700 16px/1 var(--font-body);box-sizing:border-box;width:100%" style-hover="background:var(--primary-hover)" style-active="transform:scale(.98)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;flex:none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>Call to set it up</a>
+        <a href="#quote" style="display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 22px;border-radius:var(--radius);background:transparent;color:var(--text);border:1px solid var(--text-muted);text-decoration:none;font:600 15px/1 var(--font-body)" style-hover="background:var(--surface)" style-active="transform:scale(.98)">Get a fleet quote</a>
+      </div>
+    </aside>
+  </div>
+</section>
+</sc-if>
+
+<sc-if value="{{ show.proof }}" hint-placeholder-val="{{ true }}">
+<section data-screen-label="Proof grid" style="padding:{{ bandPadY }} {{ pad }};background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div style="display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:12px;margin-bottom:{{ headMb }}">
+    <div><p class="gts-reveal" style="margin:0 0 12px;display:flex;align-items:center;gap:12px;font:500 12px/1.4 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted)"><span style="width:20px;height:2px;background:var(--accent);flex:none"></span>By the numbers</p><h2 class="gts-reveal" style="margin:0 0 0;font:900 {{ h2 }}/.95 var(--font-display);font-stretch:75%;letter-spacing:-.01em;text-transform:uppercase;text-wrap:balance">Proof, pending sign-off</h2></div>
+    <span style="display:inline-flex;align-items:center;height:24px;padding:0 8px;border:1px dashed var(--text-muted);border-radius:4px;font:500 10px/1 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted)">All figures to confirm</span>
+  </div>
+  <div style="display:grid;grid-template-columns:{{ proofCols }};border-top:1px solid var(--border);border-left:1px solid var(--border)">
+    <sc-for list="{{ copy.stats }}" as="x" hint-placeholder-count="4">
+      <div class="gts-reveal" style="display:flex;flex-direction:column;gap:12px;padding:{{ statPad }};border-right:1px solid var(--border);border-bottom:1px solid var(--border);min-height:{{ statMinH }}">
+        <span style="font:500 10px/1 var(--font-mono);letter-spacing:.1em;color:var(--text-muted)">{{ x.idx }}</span>
+        <sc-if value="{{ x.value }}" hint-placeholder-val="{{ true }}">
+          <span style="font:900 {{ statSize }}/.9 var(--font-display);font-stretch:75%;letter-spacing:-.02em;color:var(--accent)">{{ x.value }}</span>
+        </sc-if>
+        <sc-if value="{{ x.blank }}" hint-placeholder-val="{{ false }}">
+          <span style="display:grid;place-items:center;height:{{ statSize }};border:1px dashed var(--text-muted);border-radius:4px;font:500 10px/1.3 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);text-align:center;padding:0 6px">Blank: waiting on client</span>
+        </sc-if>
+        <p style="margin:auto 0 0;font-size:14px;line-height:1.4;color:var(--text)">{{ x.label }}</p>
+      </div>
+    </sc-for>
+  </div>
+</section>
+</sc-if>
+
+<sc-if value="{{ show.reviews }}" hint-placeholder-val="{{ true }}">
+<section data-screen-label="Reviews" style="padding:{{ bandPadY }} {{ pad }};background:var(--bg)">
+  <div style="margin-bottom:{{ headMb }}"><p class="gts-reveal" style="margin:0 0 12px;display:flex;align-items:center;gap:12px;font:500 12px/1.4 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted)"><span style="width:20px;height:2px;background:var(--accent);flex:none"></span>Reviews</p><h2 class="gts-reveal" style="margin:0 0 0;font:900 {{ h2 }}/.95 var(--font-display);font-stretch:75%;letter-spacing:-.01em;text-transform:uppercase;text-wrap:balance">What drivers say</h2></div>
+  <div style="display:grid;grid-template-columns:{{ cols3 }};gap:12px">
+    <sc-for list="{{ reviewSlots }}" as="r" hint-placeholder-count="3">
+      <figure class="gts-reveal" style="margin:0;display:flex;flex-direction:column;gap:14px;padding:22px;min-height:{{ reviewH }};border:1px dashed var(--text-muted);border-radius:var(--radius)">
+        <div style="display:flex;gap:4px" aria-hidden="true"><span style="width:14px;height:14px;border:1px dashed var(--text-muted)"></span><span style="width:14px;height:14px;border:1px dashed var(--text-muted)"></span><span style="width:14px;height:14px;border:1px dashed var(--text-muted)"></span><span style="width:14px;height:14px;border:1px dashed var(--text-muted)"></span><span style="width:14px;height:14px;border:1px dashed var(--text-muted)"></span></div>
+        <blockquote style="margin:0;font:500 11px/1.6 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted)">Blank: waiting on client<br>Review text · rating · source</blockquote>
+        <figcaption style="margin-top:auto;padding-top:12px;border-top:1px dashed var(--border);font:500 10px/1 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted)">{{ r }}</figcaption>
+      </figure>
+    </sc-for>
+  </div>
+</section>
+</sc-if>
+
+<sc-if value="{{ show.area }}" hint-placeholder-val="{{ true }}">
+<section id="area" data-screen-label="Service area" style="padding:{{ bandPadY }} {{ pad }};background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div style="display:grid;grid-template-columns:{{ areaCols }};gap:{{ heroGap }};align-items:start">
+    <div class="gts-reveal" style="position:relative;aspect-ratio:1;border:1px solid var(--border);border-radius:var(--radius);background-color:var(--bg);background-image:linear-gradient(var(--grid-line) 1px,transparent 1px),linear-gradient(90deg,var(--grid-line) 1px,transparent 1px);background-size:32px 32px;overflow:hidden">
+      <svg viewBox="0 0 400 400" style="position:absolute;inset:0;width:100%;height:100%" aria-hidden="true">
+        <circle cx="200" cy="200" r="160" fill="none" stroke="var(--accent)" style="stroke-width:1.5;stroke-dasharray:5 7"></circle>
+        <circle cx="200" cy="200" r="160" fill="var(--accent)" style="opacity:.05"></circle>
+        <line x1="200" y1="20" x2="200" y2="380" stroke="var(--border)" style="stroke-width:1"></line>
+        <line x1="20" y1="200" x2="380" y2="200" stroke="var(--border)" style="stroke-width:1"></line>
+        <line x1="200" y1="200" x2="360" y2="200" stroke="var(--accent)" style="stroke-width:1.5"></line>
+        <rect x="194" y="194" width="12" height="12" fill="var(--accent)"></rect>
+      </svg>
+      <span class="gts-beacon" style="position:absolute;left:calc(50% - 3px);top:calc(50% - 3px);width:6px;height:6px;border-radius:50%;background:var(--accent)"></span>
+      <span style="position:absolute;left:calc(50% + 14px);top:calc(50% - 30px);padding:4px 6px;background:var(--bg);border:1px solid var(--border);border-radius:3px;font:500 10px/1 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--text)">GTS · Marietta, GA</span>
+      <span style="position:absolute;right:9%;top:calc(50% + 8px);font:600 11px/1 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent)">100 mi</span>
+      <span style="position:absolute;left:12px;bottom:12px;font:500 10px/1.4 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted)">Map placeholder · not to scale</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:20px">
+      <div><p class="gts-reveal" style="margin:0 0 12px;display:flex;align-items:center;gap:12px;font:500 12px/1.4 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted)"><span style="width:20px;height:2px;background:var(--accent);flex:none"></span>Service area</p><h2 class="gts-reveal" style="margin:0 0 0;font:900 {{ h2 }}/.95 var(--font-display);font-stretch:75%;letter-spacing:-.01em;text-transform:uppercase;text-wrap:balance">Up to 100 miles from Marietta.</h2></div>
+      <dl style="margin:0;display:grid;border-top:1px solid var(--border)">
+        <sc-for list="{{ areaSpecs }}" as="a" hint-placeholder-count="3">
+          <div style="display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--border)"><dt style="font:500 11px/1.4 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted)">{{ a.k }}</dt><dd style="margin:0;font-weight:600;text-align:right">{{ a.v }}</dd></div>
+        </sc-for>
+      </dl>
+      <div style="min-height:96px;border:1px dashed var(--text-muted);border-radius:var(--radius);display:grid;place-items:center;padding:20px;text-align:center;font:500 11px/1.6 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted)">Blank: waiting on client<br>List of towns served</div>
+      <div style="position:relative;aspect-ratio:16/9;border-radius:var(--radius);overflow:hidden;background:var(--surface-2);border:1px solid var(--border)"><image-slot id="{{ copy.slot.shop }}" shape="rect" placeholder="{{ copy.shopPhoto }}" style="position:absolute;inset:0;width:100%;height:100%"></image-slot></div>
+    </div>
+  </div>
+</section>
+</sc-if>
+
+<sc-if value="{{ show.faq }}" hint-placeholder-val="{{ true }}">
+<section id="faq" data-screen-label="FAQ" style="padding:{{ bandPadY }} {{ pad }};background:var(--bg)">
+  <div style="display:grid;grid-template-columns:{{ faqCols }};gap:{{ heroGap }};align-items:start">
+    <div style="display:flex;flex-direction:column;gap:20px;position:{{ faqStick }};top:140px">
+      <div><p class="gts-reveal" style="margin:0 0 12px;display:flex;align-items:center;gap:12px;font:500 12px/1.4 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted)"><span style="width:20px;height:2px;background:var(--accent);flex:none"></span>FAQ</p><h2 class="gts-reveal" style="margin:0 0 0;font:900 {{ h2 }}/.95 var(--font-display);font-stretch:75%;letter-spacing:-.01em;text-transform:uppercase;text-wrap:balance">Straight answers</h2></div>
+      <p style="margin:0;color:var(--text-muted);font-size:15px;max-width:34ch">Not listed here? Call. Phone consultations are free.</p>
+      <a href="{{ copy.tel }}" class="gts-arrowlink" style="display:inline-flex;align-items:center;gap:8px;align-self:flex-start;min-height:44px;color:var(--text);font:600 15px/1 var(--font-body);text-decoration:none;box-shadow:inset 0 -2px 0 var(--accent)">{{ copy.phone }} <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></a>
+    </div>
+    <div style="border-top:1px solid var(--border)">
+      <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="5">
+        <div style="border-bottom:1px solid var(--border);background:{{ f.bg }};transition:background .2s">
+          <button type="button" aria-expanded="{{ f.open }}" onClick="{{ f.toggle }}" style="width:100%;display:grid;grid-template-columns:36px 1fr 32px;align-items:center;gap:12px;min-height:64px;padding:14px {{ faqPadX }};background:none;border:0;color:var(--text);font:600 {{ faqQ }}/1.3 var(--font-body);text-align:left;cursor:pointer" style-hover="color:var(--text-muted)">
+            <span style="font:500 11px/1 var(--font-mono);letter-spacing:.06em;color:{{ f.numColor }}">{{ f.n }}</span>
+            <span>{{ f.q }}</span>
+            <span aria-hidden="true" style="display:grid;place-items:center;width:32px;height:32px;border:1px solid {{ f.iconBorder }};border-radius:4px;color:{{ f.iconColor }}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width:2.4;stroke-linecap:round;transition:transform .22s cubic-bezier(.2,.7,.2,1);transform:{{ f.rot }}"><path d="M12 5v14M5 12h14"></path></svg></span>
+          </button>
+          <div style="display:grid;grid-template-rows:{{ f.rows }};transition:grid-template-rows .22s ease">
+            <div style="overflow:hidden">
+              <div style="padding:0 {{ faqPadX }} 20px calc(36px + 12px + {{ faqPadX }})">
+                <sc-if value="{{ f.blank }}" hint-placeholder-val="{{ false }}">
+                  <div style="padding:12px;border:1px dashed var(--text-muted);border-radius:4px;font:500 10px/1.5 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted)">Blank: waiting on client · accepted payment methods</div>
+                </sc-if>
+                <sc-if value="{{ f.a }}" hint-placeholder-val="{{ true }}">
+                  <p style="margin:0;color:var(--text-muted);font-size:15px;max-width:60ch">{{ f.a }}</p>
+                </sc-if>
+              </div>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+</sc-if>
+
+<sc-if value="{{ show.final }}" hint-placeholder-val="{{ true }}">
+<section id="quote" ref="{{ finalRef }}" data-screen-label="Final call band" data-theme="dark" style="position:relative;isolation:isolate;background:var(--bg);color:var(--text);border-top:1px solid var(--border);overflow:hidden">
+  <div aria-hidden="true" style="height:8px;background:var(--accent);background-image:var(--hazard)"></div>
+  <div aria-hidden="true" style="position:absolute;inset:0;background-image:var(--grain);opacity:{{ grainOpacity }};pointer-events:none;z-index:-1"></div>
+  <div style="padding:{{ bandPadY }} {{ pad }};display:grid;grid-template-columns:{{ finalCols }};gap:{{ heroGap }};align-items:start">
+    <div style="display:flex;flex-direction:column;gap:22px;min-width:0">
+      <p style="margin:0;display:inline-flex;align-items:center;gap:10px;font:500 12px/1.4 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--text)"><span class="gts-beacon" style="width:6px;height:6px;border-radius:50%;background:var(--accent)"></span>Open 24 hours · 7 days</p>
+      <h2 class="gts-reveal" style="margin:0;font:900 {{ finalH2 }}/.9 var(--font-display);font-stretch:75%;letter-spacing:-.01em;text-transform:uppercase;text-wrap:balance">{{ copy.finalTitle }}</h2>
+      <a href="{{ copy.tel }}" style="display:block;font:600 {{ phoneBig }}/1 var(--font-mono);letter-spacing:-.03em;color:var(--accent);text-decoration:none;align-self:flex-start;white-space:nowrap" style-hover="color:var(--text)">{{ copy.phone }}</a>
+      <a href="{{ copy.tel }}" style="display:inline-flex;align-self:{{ btnAlign }};align-items:center;justify-content:center;gap:10px;min-height:56px;padding:0 24px;border-radius:var(--radius);background:var(--primary-bg);color:var(--primary-fg);border:1px solid var(--primary-border);text-decoration:none;font:700 16px/1 var(--font-body);box-sizing:border-box;white-space:nowrap" style-hover="background:var(--primary-hover)" style-active="transform:scale(.98)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;flex:none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>Call 24/7 · {{ copy.phone }}</a>
+      <ul style="margin:4px 0 0;padding:16px 0 0;list-style:none;display:flex;flex-wrap:wrap;gap:8px 20px;border-top:1px solid var(--border);font:500 11px/1.4 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted)">
+        <li>Roadside up to 100 mi</li><li>OEM diagnostics</li><li>Shop pricing in the bay</li>
+      </ul>
+    </div>
+    <form onSubmit="{{ onSubmit }}" noValidate="{{ true }}" class="gts-reveal" style="display:flex;flex-direction:column;gap:18px;padding:{{ formPad }};background:var(--surface);border:1px solid var(--border);border-radius:var(--radius)">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding-bottom:14px;border-bottom:1px solid var(--border)">
+        <h3 style="margin:0;font:800 {{ h3 }}/1 var(--font-display);font-stretch:75%;text-transform:uppercase">Request a callback</h3>
+        <span style="font:500 10px/1 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted)">Not urgent</span>
+      </div>
+      <div style="display:grid;grid-template-columns:{{ formRow }};gap:16px">
+        <div style="display:flex;flex-direction:column;gap:8px"><label for="{{ ids.name }}" style="font:500 11px/1 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted)">Name</label>
+          <input id="{{ ids.name }}" name="name" autoComplete="name" value="{{ form.name }}" onChange="{{ setName }}" style="height:52px;padding:0 14px;border-radius:var(--radius-sm);border:1px solid {{ nameBorder }};background:var(--surface-2);color:var(--text);font:400 16px/1 var(--font-body);box-sizing:border-box;width:100%" style-focus="border-color:var(--accent);outline:2px solid var(--focus);outline-offset:2px">
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px"><label for="{{ ids.phone }}" style="font:500 11px/1 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted)">Phone</label>
+          <input id="{{ ids.phone }}" name="phone" type="tel" autoComplete="tel" inputMode="tel" value="{{ form.phone }}" onChange="{{ setPhone }}" style="height:52px;padding:0 14px;border-radius:var(--radius-sm);border:1px solid {{ phoneBorder }};background:var(--surface-2);color:var(--text);font:400 16px/1 var(--font-body);box-sizing:border-box;width:100%" style-focus="border-color:var(--accent);outline:2px solid var(--focus);outline-offset:2px">
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px"><label for="{{ ids.msg }}" style="font:500 11px/1 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted)">What's going on?</label>
+        <textarea id="{{ ids.msg }}" name="message" rows="{{ 3 }}" value="{{ form.msg }}" onChange="{{ setMsg }}" style="min-height:104px;padding:12px 14px;border-radius:var(--radius-sm);border:1px solid var(--border);background:var(--surface-2);color:var(--text);font:400 16px/1.5 var(--font-body);box-sizing:border-box;width:100%;resize:vertical" style-focus="border-color:var(--accent);outline:2px solid var(--focus);outline-offset:2px"></textarea>
+      </div>
+      <button type="button" role="switch" aria-checked="{{ form.fleet }}" onClick="{{ toggleFleet }}" style="display:flex;align-items:center;gap:12px;min-height:52px;padding:0 14px;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font:600 14px/1.3 var(--font-body);cursor:pointer;text-align:left">
+        <span aria-hidden="true" style="position:relative;width:44px;height:26px;border-radius:13px;background:{{ switchBg }};border:1px solid {{ switchBorder }};flex:none;transition:background .15s"><span style="position:absolute;top:2px;left:2px;width:20px;height:20px;border-radius:50%;background:{{ knobBg }};transform:{{ knobX }};transition:transform .18s cubic-bezier(.2,.7,.2,1)"></span></span>
+        <span>Fleet? <span style="color:var(--text-muted);font-weight:400">We'll ask about a fleet account</span></span>
+      </button>
+      <sc-if value="{{ formIsSuccess }}" hint-placeholder-val="{{ false }}">
+        <div role="status" style="display:flex;gap:12px;align-items:flex-start;padding:14px;border-radius:var(--radius-sm);border:1px solid var(--accent);background:var(--surface-2);color:var(--text);font-size:15px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" style="stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;flex:none;margin-top:2px"><path d="M20 6 9 17l-5-5"></path></svg><span><strong>Got it.</strong> We'll call you back. Need us right now? <a href="{{ copy.tel }}" style="color:var(--text);font-weight:700">{{ copy.phone }}</a></span></div>
+      </sc-if>
+      <sc-if value="{{ formIsError }}" hint-placeholder-val="{{ false }}">
+        <div role="alert" style="display:flex;gap:12px;align-items:flex-start;padding:14px;border-radius:var(--radius-sm);border:1px solid var(--text);background:var(--surface-2);color:var(--text);font-size:15px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width:2.5;stroke-linecap:round;flex:none;margin-top:2px"><path d="M12 8v5M12 16.5v.5"></path></svg><span><strong>Missing name or phone.</strong> Fix the fields above, or just call <a href="{{ copy.tel }}" style="color:var(--text);font-weight:700">{{ copy.phone }}</a>.</span></div>
+      </sc-if>
+      <button type="submit" style="display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:0 22px;border-radius:var(--radius);background:transparent;color:var(--text);border:1px solid var(--text-muted);font:600 16px/1 var(--font-body);cursor:pointer" style-hover="background:var(--surface-2)" style-active="transform:scale(.98)">Request a callback <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></button>
+    </form>
+  </div>
+</section>
+</sc-if>
+
+<sc-if value="{{ show.footer }}" hint-placeholder-val="{{ true }}">
+<footer data-screen-label="Footer" data-theme="dark" style="background:var(--b-ink);color:var(--text);padding:{{ footPadT }} {{ pad }} 28px;border-top:1px solid var(--border)">
+  <div style="display:grid;grid-template-columns:{{ footCols }};gap:{{ footGap }}">
+    <div style="grid-column:{{ footBrandSpan }};display:flex;flex-direction:column;gap:14px">
+      <sc-if value="{{ isGts }}" hint-placeholder-val="{{ true }}"><img src="uploads/gts-logo-white-on-ink.png" alt="GTS Truck &amp; Trailer Repair" style="width:{{ footLogoW }};height:auto;margin:-12% 0 -6% -7%"></sc-if>
+      <sc-if value="{{ isCowboys }}" hint-placeholder-val="{{ false }}"><span style="font:900 36px/1 var(--font-display);font-stretch:75%;text-transform:uppercase">{{ copy.name }}</span></sc-if>
+      <p style="margin:0;color:var(--text-muted);font-size:14px;max-width:34ch">{{ copy.footerName }}. Roadside, diagnostics, truck, trailer and fleet repair.</p>
+    </div>
+    <sc-for list="{{ footCols2 }}" as="fc" hint-placeholder-count="3">
+      <div style="display:flex;flex-direction:column;gap:4px;font-size:14px">
+        <span style="margin-bottom:8px;font:500 10px/1 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted)">{{ fc.h }}</span>
+        <sc-for list="{{ fc.items }}" as="it" hint-placeholder-count="3">
+          <sc-if value="{{ it.href }}" hint-placeholder-val="{{ false }}"><a href="{{ it.href }}" class="gts-arrowlink" style="align-self:flex-start;display:inline-flex;align-items:center;min-height:44px;color:var(--text);font-weight:600;text-decoration:none">{{ it.t }}</a></sc-if>
+          <sc-if value="{{ it.plain }}" hint-placeholder-val="{{ true }}"><span style="color:var(--text-muted);line-height:1.6">{{ it.t }}</span></sc-if>
+        </sc-for>
+      </div>
+    </sc-for>
+  </div>
+  <div style="display:flex;flex-direction:{{ proofDir }};flex-wrap:wrap;justify-content:space-between;gap:6px 24px;margin-top:{{ footGap }};padding-top:20px;border-top:1px solid var(--border);font:500 10px/1.5 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted)">
+    <span>© {{ year }} {{ copy.llc }}</span>
+    <span>{{ copy.address1 }}, {{ copy.address2 }}</span>
+  </div>
+</footer>
+</sc-if>
+
+<sc-if value="{{ show.bar }}" hint-placeholder-val="{{ false }}">
+<div data-screen-label="Mobile sticky call bar" data-theme="{{ theme }}" aria-hidden="{{ barHidden }}" style="position:sticky;bottom:0;z-index:30;display:grid;grid-template-columns:7fr 3fr;gap:8px;padding:8px 12px 42px;background:var(--bg);border-top:1px solid var(--border);box-shadow:0 -1px 0 var(--border);transform:{{ barY }};opacity:{{ barOpacity }};transition:transform .22s ease,opacity .22s ease">
+  <a href="{{ copy.tel }}" tabIndex="{{ barTab }}" style="display:inline-flex;align-items:center;justify-content:center;gap:10px;height:48px;border-radius:var(--radius);background:var(--primary-bg);color:var(--primary-fg);border:1px solid var(--primary-border);text-decoration:none;font:700 15px/1 var(--font-body)" style-hover="background:var(--primary-hover)" style-active="transform:scale(.98)">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+    Call 24/7 Dispatch
+  </a>
+  <a href="#quote" tabIndex="{{ barTab }}" style="display:inline-flex;align-items:center;justify-content:center;height:48px;border-radius:var(--radius);background:transparent;color:var(--text);border:1px solid var(--text-muted);text-decoration:none;font:600 15px/1 var(--font-body)" style-hover="background:var(--surface-2)" style-active="transform:scale(.98)">Quote</a>
+  <span aria-hidden="true" style="position:absolute;left:50%;bottom:10px;transform:translateX(-50%);width:120px;height:4px;border-radius:2px;background:var(--border)"></span>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:390},&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;dark&quot;,&quot;options&quot;:[&quot;dark&quot;,&quot;light&quot;],&quot;tsType&quot;:&quot;'dark' | 'light'&quot;},&quot;width&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;390&quot;,&quot;options&quot;:[&quot;390&quot;,&quot;1280&quot;],&quot;tsType&quot;:&quot;'390' | '1280'&quot;},&quot;brand&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;gts&quot;,&quot;options&quot;:[&quot;gts&quot;,&quot;cowboys&quot;],&quot;tsType&quot;:&quot;'gts' | 'cowboys'&quot;},&quot;lightPrimary&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;ink&quot;,&quot;options&quot;:[&quot;ink&quot;,&quot;lime&quot;],&quot;tsType&quot;:&quot;'ink' | 'lime'&quot;,&quot;section&quot;:&quot;Light-mode primary&quot;},&quot;h1Variant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;a&quot;,&quot;options&quot;:[&quot;a&quot;,&quot;b&quot;],&quot;tsType&quot;:&quot;'a' | 'b'&quot;},&quot;sections&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;all&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;showBar&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;scroll&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;grain&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;formState&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;idle&quot;,&quot;options&quot;:[&quot;idle&quot;,&quot;success&quot;,&quot;error&quot;],&quot;tsType&quot;:&quot;'idle' | 'success' | 'error'&quot;}}">
+const PHONE = 'M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z';
+const ICON = {
+  zap: 'M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z',
+  cpu: 'M6 4h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zM9 9h6v6H9zM15 2v2M15 20v2M2 15h2M2 9h2M20 15h2M20 9h2M9 2v2M9 20v2',
+  wrench: 'M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z',
+  box: 'M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16ZM3.3 7l8.7 5 8.7-5M12 22V12',
+  users: 'M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M5 7a4 4 0 1 0 8 0a4 4 0 1 0-8 0M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75',
+  thermo: 'M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z',
+  drop: 'M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z',
+};
+const BRANDS = {
+  gts: {
+    name: 'GTS', sub: 'Diesel Truck & Trailer Repair', phone: '(770) 771-3468', tel: 'tel:+17707713468',
+    eyebrow: '24/7 Roadside · Marietta, GA · Up to 100 mi',
+    h1a: 'Diesel truck & trailer repair. Day or night.', h1b: 'Broken down? We roll to you.',
+    subhead: 'Emergency roadside repair up to 100 miles out, OEM computer diagnostics for every brand, and full truck and trailer repair at shop pricing. Open 24 hours, 7 days.',
+    ghostLabel: 'Get a fleet quote', heroPhoto: 'Photo: GTS service truck at dusk, lit bay behind', fleetPhoto: 'Photo: vans, box trucks and semis at the shop', shopPhoto: 'Photo: shop front, 530 Roswell St NE',
+    proof: [{label: '30+ yrs combined experience'}, {label: 'Free phone consultations'}, {label: '$200 referral discounts'}],
+    servicesTitle: 'Trucks, trailers, fleets.', specRow: 'Radius: 100 mi · Hours: 24/7 · Diagnostics: OEM',
+    services: [
+      {title: '24/7 Emergency roadside repair', benefit: 'Up to 100 miles out, any hour.', icon: ICON.zap, photo: 'Photo: roadside repair at night, hazards on', large: true,
+        items: ['On-site repair up to 100 miles from Marietta', '“We\'ll do a clutch on the side of the road”', 'Trucks and trailers', 'Open 24 hours, 7 days']},
+      {title: 'Computer diagnostics', benefit: 'Factory (OEM) software for all brands.', icon: ICON.cpu, photo: 'Photo: laptop on OEM software, cable to the truck', items: ['Forced regeneration', 'Reduced-power diagnostics', 'Electrical troubleshooting']},
+      {title: 'Truck repair', benefit: 'Shop pricing, lower than roadside.', icon: ICON.wrench, photo: 'Photo: semi in the bay, hood up', items: ['Engines, brakes, transmissions', 'Suspension and drive shafts', 'Electrical', 'Heating and AC']},
+      {title: 'Trailer repair', benefit: 'Brakes to reefers, back on the road.', icon: ICON.box, photo: 'Photo: trailer brakes and air lines, close', items: ['Brakes and air systems', 'Suspension, legs, bumpers and bushings', 'Refrigerated trailers and air chutes', 'Trailer electrical']},
+      {title: 'Fleet services', benefit: 'Contracts, special pricing, 24/7 support.', icon: ICON.users, photo: 'Photo: fleet trucks lined up in the lot', items: ['Vans, semis and trailers', 'Buses and tow trucks', 'Box trucks', 'Tailored contracts']},
+    ],
+    howTitle: 'Three steps. One call.',
+    steps: [{n: '01', meta: 'Free phone consultation', title: 'Call', body: 'Tell us where you are, what you drive and what happened.'}, {n: '02', meta: 'Roadside up to 100 mi · or the shop', title: 'We come to you', body: 'Or bring the truck to the shop for shop pricing, lower than roadside.'}, {n: '03', meta: '24 hours · 7 days', title: 'Back on the road', body: 'Repaired on the shoulder or in the bay, any hour.'}],
+    stats: [{value: '30+', label: 'Years combined experience'}, {value: 'Free', label: 'Phone consultations'}, {value: '$200', label: 'Referral discounts'}, {blank: true, label: 'Stat to be supplied'}],
+    faqs: [
+      {q: 'Are you really open 24 hours?', a: 'Yes. Open 24 hours, 7 days. Call (770) 771-3468 any time.'},
+      {q: 'How far will you come for roadside repair?', a: 'Up to 100 miles from Marietta, GA.'},
+      {q: 'What do you work on?', a: 'Diesel trucks and trailers: engines, brakes, transmissions, suspension, drive shafts, electrical, heating and AC, trailer brakes and air systems, refrigerated trailers and air chutes. OEM computer diagnostics for all brands.'},
+      {q: 'Do you offer fleet accounts?', a: 'Yes. Tailored contracts, special pricing and 24/7 support for vans, semis and trailers, buses, tow trucks and box trucks.'},
+      {q: 'What payment do you accept?', blank: true},
+    ],
+    finalTitle: 'Call now. We\'re up.',
+    footerName: 'GTS Diesel Truck & Trailer Repair', llc: 'Matt and Dom Enterprises LLC', address1: '530 Roswell St NE', address2: 'Marietta, GA 30060', sisterLink: 'Cowboys Radiator',
+  },
+  cowboys: {
+    name: 'Cowboys', sub: 'Radiator & Cooling Repair', phone: 'Blank: phone', tel: '#',
+    eyebrow: 'Radiator · Cooling · Marietta, GA',
+    h1a: 'Auto radiator & cooling repair. Marietta.', h1b: 'Running hot? Bring it in.',
+    subhead: 'Auto radiator and cooling repair in Marietta, GA.',
+    ghostLabel: 'Get a quote', heroPhoto: 'Photo: radiator on the bench, warm shop light', fleetPhoto: 'Photo: Cowboys shop floor', shopPhoto: 'Photo: Cowboys shop front',
+    proof: [{label: 'Blank: proof point'}, {label: 'Blank: proof point'}],
+    servicesTitle: 'Radiators and cooling.', specRow: 'Marietta, GA · Hours: blank',
+    services: [
+      {title: 'Radiator repair', benefit: 'Blank: one-line benefit', icon: ICON.thermo, photo: 'Photo: radiator core, close', large: true, items: ['Blank: checklist item', 'Blank: checklist item', 'Blank: checklist item']},
+      {title: 'Cooling system repair', benefit: 'Blank: one-line benefit', icon: ICON.drop, photo: 'Photo: coolant hoses and fan, close', items: ['Blank: checklist item', 'Blank: checklist item', 'Blank: checklist item']},
+      {title: 'Blank: service', benefit: 'Blank: one-line benefit', icon: ICON.wrench, items: ['Blank: checklist item', 'Blank: checklist item']},
+      {title: 'Blank: service', benefit: 'Blank: one-line benefit', icon: ICON.wrench, items: ['Blank: checklist item', 'Blank: checklist item']},
+      {title: 'Blank: service', benefit: 'Blank: one-line benefit', icon: ICON.wrench, items: ['Blank: checklist item', 'Blank: checklist item']},
+    ],
+    howTitle: 'How it works',
+    steps: [{n: '01', meta: 'Blank', title: 'Call', body: 'Blank: waiting on client'}, {n: '02', meta: 'Blank', title: 'Bring it in', body: 'Blank: waiting on client'}, {n: '03', meta: 'Blank', title: 'Drive cool', body: 'Blank: waiting on client'}],
+    stats: [{blank: true, label: 'Stat'}, {blank: true, label: 'Stat'}, {blank: true, label: 'Stat'}, {blank: true, label: 'Stat'}],
+    faqs: [{q: 'Blank: question', blank: true}, {q: 'Blank: question', blank: true}, {q: 'Blank: question', blank: true}],
+    finalTitle: 'Call the shop.',
+    footerName: 'Cowboys Radiator', llc: 'Blank: legal entity', address1: 'Blank: address', address2: 'Marietta, GA', sisterLink: 'GTS Diesel Truck & Trailer Repair',
+  },
+};
+const ALL = ['header','hero','emergency','services','how','fleet','proof','reviews','area','faq','final','footer'];
+let uid = 0;
+class Component extends DCLogic {
+  constructor(p) { super(p); this.uid = ++uid; this.rootRef = React.createRef(); this.heroBtnRef = React.createRef(); this.finalRef = React.createRef();
+    this.state = { openFaq: 0, form: {name:'', phone:'', msg:'', fleet:false}, formState: this.props.formState || 'idle', barVisible: false, themeOverride: null, sysDark: typeof matchMedia !== 'undefined' && matchMedia('(prefers-color-scheme: dark)').matches }; }
+  componentDidMount() { if (this.props.scroll) setTimeout(() => this.updateBar(), 50); }
+  updateBar() {
+    const r = this.rootRef.current, b = this.heroBtnRef.current, f = this.finalRef.current; if (!r) return;
+    const rr = r.getBoundingClientRect();
+    const past = b ? b.getBoundingClientRect().bottom < rr.top : true;
+    const atFinal = f ? f.getBoundingClientRect().top < rr.bottom - 100 : false;
+    const v = past && !atFinal; if (v !== this.state.barVisible) this.setState({ barVisible: v });
+  }
+  renderVals() {
+    const p = this.props, s = this.state;
+    const brand = p.brand === 'cowboys' ? 'cowboys' : 'gts', copy = BRANDS[brand];
+    const w = parseInt(p.width) || 390, phone = w < 760;
+    const ov = s.themeOverride; const theme = ov === 'system' ? (s.sysDark ? 'dark' : 'light') : (ov || p.theme || 'dark');
+    const secs = p.sections ? String(p.sections).split(',').map(x => x.trim()) : ALL;
+    const show = {}; ALL.forEach(k => show[k] = secs.includes(k) || secs.includes('all')); show.bar = !!p.showBar;
+    const faqs = copy.faqs.map((f, i) => ({ ...f, n: String(i + 1).padStart(2, '0'), bg: s.openFaq === i ? 'var(--surface)' : 'transparent', numColor: s.openFaq === i ? 'var(--accent)' : 'var(--text-muted)', iconBorder: s.openFaq === i ? 'var(--accent)' : 'var(--border)', iconColor: s.openFaq === i ? 'var(--accent)' : 'var(--text)', open: s.openFaq === i, rows: s.openFaq === i ? '1fr' : '0fr', rot: s.openFaq === i ? 'rotate(45deg)' : 'rotate(0deg)', toggle: () => this.setState({ openFaq: s.openFaq === i ? -1 : i }) }));
+    copy.stats = copy.stats.map((x, i) => ({ ...x, idx: String(i + 1).padStart(2, '0') }));
+    const services = copy.services.map((x, i) => ({ ...x, slot: brand + '-svc-' + i, ar: phone && !x.large ? '21/9' : '16/9', col: phone ? 'auto' : (x.large ? 'span 6' : 'span 3'), row: phone ? 'auto' : (x.large ? 'span 2' : 'auto') }));
+    const barVisible = p.scroll ? s.barVisible : true;
+    const err = s.formState === 'error';
+    const seg = (k) => ({ bg: (ov || null) === k || (!ov && k === null) ? 'var(--surface-2)' : 'transparent', fg: ((ov || null) === k) ? 'var(--text)' : 'var(--text-muted)' });
+    const active = ov || 'none';
+    const segStyle = k => ({ bg: active === k ? 'var(--surface-2)' : 'transparent', fg: active === k ? 'var(--text)' : 'var(--text-muted)' });
+    const L = segStyle('light'), D = segStyle('dark'), S = segStyle('system');
+    return {
+      rootRef: this.rootRef, heroBtnRef: this.heroBtnRef, finalRef: this.finalRef, onScroll: () => this.updateBar(),
+      themeName: ov || 'default', themeIcon: theme === 'light' ? 'M12 8a4 4 0 1 0 0 8a4 4 0 1 0 0-8M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41' : 'M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z',
+      cycleTheme: () => this.setState({ themeOverride: theme === 'dark' ? 'light' : 'dark' }),
+      btnW: phone ? '100%' : 'auto', btnAlign: phone ? 'stretch' : 'flex-start', btnFlex: phone ? '1 1 auto' : '0 0 auto', proofDir: phone ? 'column' : 'row', reviewH: phone ? '112px' : '160px',
+      headMb: phone ? '28px' : '48px', stepGap: phone ? '0' : '24px', stepInner: phone ? '56px 1fr' : '1fr', stepRailDir: phone ? 'column' : 'row', stepRailAlign: phone ? 'center' : 'center', stepPadB: phone ? '28px' : '0',
+      railSize: phone ? '2px 8px' : '8px 2px', railRepeat: phone ? 'repeat-y' : 'repeat-x',
+      fleetCols: phone ? '1fr' : '7fr 5fr', fleetPhotoH: phone ? '200px' : '240px', fleetTypes: ['Vans', 'Semis & trailers', 'Buses', 'Tow trucks', 'Box trucks'],
+      fleetSpecs: [{k: 'Contracts', v: 'Tailored to your fleet'}, {k: 'Pricing', v: 'Special fleet pricing'}, {k: 'Support', v: '24/7'}],
+      statPad: phone ? '18px' : '28px', statMinH: phone ? '150px' : '200px', statSize: phone ? '44px' : '72px',
+      reviewSlots: ['Review 01', 'Review 02', 'Review 03'], areaCols: phone ? '1fr' : '6fr 5fr',
+      areaSpecs: [{k: 'Base', v: copy.address1 + ', ' + copy.address2}, {k: 'Roadside radius', v: '100 mi'}, {k: 'Hours', v: '24/7'}],
+      faqStick: phone ? 'static' : 'sticky', faqPadX: phone ? '0' : '16px', faqQ: phone ? '16px' : '17px',
+      finalCols: phone ? '1fr' : '6fr 6fr', finalH2: phone ? '40px' : '80px', formPad: phone ? '20px' : '28px', formRow: phone ? '1fr' : '1fr 1fr',
+      footCols: phone ? '1fr 1fr' : '2fr 1fr 1fr 1fr', footGap: phone ? '28px' : '40px', footBrandSpan: phone ? '1 / -1' : 'auto', footPadT: phone ? '40px' : '64px', footLogoW: phone ? '200px' : '240px', year: new Date().getFullYear(),
+      footCols2: [
+        {h: 'Contact', items: [{t: copy.phone, href: copy.tel}, {t: copy.address1, plain: true}, {t: copy.address2, plain: true}]},
+        {h: 'Hours', items: [{t: 'Open 24 hours', plain: true}, {t: '7 days a week', plain: true}]},
+        {h: 'Sister shop', items: [{t: copy.sisterLink, href: '#cowboys'}]},
+      ],
+      showMobileHeader: show.header && phone, showDesktopHeader: show.header && !phone, theme, brand, isGts: brand === 'gts', isCowboys: brand === 'cowboys', lightPrimary: p.lightPrimary === 'lime' ? 'lime' : 'ink', copy: { ...copy, steps: copy.steps.map((st, i, arr) => ({ ...st, rail: i < arr.length - 1 ? (phone ? 'linear-gradient(var(--accent) 50%, transparent 50%)' : 'linear-gradient(90deg, var(--accent) 50%, transparent 50%)') : 'none', railOpacity: i < arr.length - 1 ? '.6' : '0' })), services, specItems: copy.specRow.split(' · '), slot: { hero: brand + '-hero', fleet: brand + '-fleet', shop: brand + '-shop' } }, show, faqs,
+      h1: p.h1Variant === 'b' ? copy.h1b : copy.h1a,
+      widthPx: w + 'px', frameH: p.scroll ? (p.frameHeight || '844px') : 'auto', frameOverflow: p.scroll ? 'auto' : 'visible',
+      pad: phone ? '20px' : '56px', heroPadY: phone ? '40px' : '88px', bandPadY: phone ? '48px' : '88px', heroGap: phone ? '28px' : '56px',
+      heroCols: phone ? '1fr' : '7fr 5fr', heroH1: phone ? '46px' : '104px', heroSub: phone ? '16px' : '19px', heroPhotoAr: phone ? '16/9' : '4/5',
+      h2: phone ? '34px' : '60px', h3: phone ? '22px' : '26px', phoneBig: phone ? '32px' : '44px',
+      cols2: phone ? '1fr' : '1fr 1fr', cols3: phone ? '1fr' : 'repeat(3,1fr)', faqCols: phone ? '1fr' : '4fr 8fr', bentoCols: phone ? '1fr' : 'repeat(12,1fr)', proofCols: phone ? '1fr 1fr' : 'repeat(4,1fr)',
+      navLinks: phone ? 'none' : 'flex', headerRightMl: phone ? 'auto' : '0', headerCallPad: phone ? '0' : '14px',
+      footerPadB: show.bar ? '40px' : '40px',
+      grainOpacity: p.grain === false || p.grain === 'false' ? '0' : 'var(--grain-opacity)',
+      isLight: active === 'light', isDark: active === 'dark', isSystem: active === 'system',
+      segLightBg: L.bg, segLightFg: L.fg, segDarkBg: D.bg, segDarkFg: D.fg, segSysBg: S.bg, segSysFg: S.fg,
+      setLight: () => this.setState({ themeOverride: 'light' }), setDark: () => this.setState({ themeOverride: 'dark' }), setSystem: () => this.setState({ themeOverride: 'system' }),
+      ids: { name: 'name-' + this.uid, phone: 'phone-' + this.uid, msg: 'msg-' + this.uid },
+      form: s.form,
+      setName: e => this.setState({ form: { ...s.form, name: e.target.value } }), setPhone: e => this.setState({ form: { ...s.form, phone: e.target.value } }), setMsg: e => this.setState({ form: { ...s.form, msg: e.target.value } }),
+      toggleFleet: () => this.setState({ form: { ...s.form, fleet: !s.form.fleet } }),
+      switchBg: s.form.fleet ? 'var(--accent)' : 'var(--surface-2)', switchBorder: s.form.fleet ? 'var(--accent-ink)' : 'var(--text-muted)', knobBg: s.form.fleet ? 'var(--accent-ink)' : 'var(--text)', knobX: s.form.fleet ? 'translateX(18px)' : 'translateX(0)',
+      nameBorder: err && !s.form.name ? 'var(--text)' : 'var(--border)', phoneBorder: err && !s.form.phone ? 'var(--text)' : 'var(--border)',
+      formIsSuccess: s.formState === 'success', formIsError: err,
+      onSubmit: e => { e.preventDefault(); this.setState({ formState: s.form.name && s.form.phone ? 'success' : 'error' }); },
+      barY: barVisible ? 'translateY(0)' : 'translateY(110%)', barOpacity: barVisible ? '1' : '0', barHidden: !barVisible, barTab: barVisible ? 0 : -1,
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,475 @@
+{
+  "name": "GTS Diesel design system",
+  "version": "1.0",
+  "theme": "dark-only",
+  "stack": [
+    "vite",
+    "react",
+    "typescript",
+    "tailwindcss@4",
+    "shadcn/ui",
+    "lucide-react"
+  ],
+  "business": {
+    "name": "GTS Diesel Truck & Trailer Repair",
+    "legal": "Matt and Dom Enterprises LLC",
+    "address": "530 Roswell St NE, Marietta, GA 30060",
+    "phone": "(770) 771-3468",
+    "tel": "tel:+17707713468",
+    "hours": "Open 24 hours, 7 days",
+    "roadsideRadiusMiles": 100,
+    "sister": "Cowboys Radiator"
+  },
+  "toConfirm": [
+    "30+ years combined experience",
+    "Free phone consultations",
+    "$200 referral discounts"
+  ],
+  "blanks": [
+    "reviews",
+    "star ratings",
+    "towns served",
+    "response times",
+    "certifications",
+    "payment methods",
+    "photos",
+    "fourth stat"
+  ],
+  "blankRule": "Render as dashed outline + \"Blank: waiting on client\". Never invent content.",
+  "breakpoints": {
+    "mobile": "<768px (designed at 390)",
+    "desktop": ">=768px (designed at 1280)"
+  },
+  "sectionOrder": [
+    "header",
+    "hero",
+    "emergency",
+    "services",
+    "how",
+    "fleet",
+    "proof",
+    "reviews",
+    "area",
+    "faq",
+    "final+form",
+    "footer",
+    "mobileCallBar"
+  ],
+  "accentRules": [
+    "accent is fill, numeral, rule or focus ring only",
+    "max ~10% of any viewport",
+    "text on accent is always --accent-ink",
+    "hazard stripe used exactly twice (emergency top, final band top)"
+  ],
+  "motionRules": [
+    "transform and opacity only",
+    "interactions <= 250ms",
+    "loops only for live/24-7/call meaning",
+    "one .gts-signal per page",
+    "all motion off under prefers-reduced-motion"
+  ],
+  "a11y": [
+    "WCAG 2.2 AA",
+    "text >= 4.5:1, large >= 3:1",
+    "button edges and focus >= 3:1",
+    "targets >= 44px, call buttons 56px",
+    "visible labels on every input",
+    "scroll-margin-top on anchors = header height"
+  ],
+  "components": [
+    {
+      "id": "header",
+      "name": "Sticky header",
+      "behaviour": "Mobile: logo plate, OPEN 24/7 chip, 44px icon-only call. Desktop: 32px utility strip (live status, spec row, address) over an 80px bar with the logo, four numbered anchors centred and a labelled call button.",
+      "shadcn": "Button (size icon / default), Badge (outline), NavigationMenu optional",
+      "tokens": [
+        "--bg",
+        "--surface",
+        "--border",
+        "--accent",
+        "--primary-*"
+      ],
+      "motion": ".gts-beacon on status dot · .gts-navlink on anchors",
+      "a11y": "nav aria-label=\"Primary\" · call has aria-label with number · 44px targets"
+    },
+    {
+      "id": "hero",
+      "name": "Hero",
+      "behaviour": "Static layout. Mono eyebrow, condensed H1 (balance), subhead, call + ghost, proof strip with “to confirm” chips, photo slot. 7/5 split desktop; stacked with full-width buttons on mobile.",
+      "shadcn": "Button, Badge, AspectRatio",
+      "tokens": [
+        "--bg",
+        "--text",
+        "--text-muted",
+        "--photo-overlay",
+        "--grain"
+      ],
+      "motion": ".gts-scan on eyebrow rule · .gts-signal on call button",
+      "a11y": "single h1 · photo alt describes the shot · proof chips are text"
+    },
+    {
+      "id": "emergency",
+      "name": "Emergency band",
+      "behaviour": "The one accent-filled section. Hazard-stripe top edge (use 1 of 2). “Have ready” list on 1px ink rules. Ink-filled call button with accent text.",
+      "shadcn": "Button (variant onAccent), Separator",
+      "tokens": [
+        "--accent",
+        "--accent-ink",
+        "--hazard"
+      ],
+      "motion": "press only",
+      "a11y": "ink on accent 9.4:1 · ordered list"
+    },
+    {
+      "id": "services",
+      "name": "Service bento",
+      "behaviour": "One large tile (24/7 roadside, span 6 × 2) + four medium (span 3) on 12 columns; one column on mobile. Each: photo slot, icon chip, title, one-line benefit, 3–4 checks, “Call about this →”. Hover: top border turns accent.",
+      "shadcn": "Card (Header/Content/Footer), Button (link)",
+      "tokens": [
+        "--surface",
+        "--border",
+        "--mark",
+        "--grid-line"
+      ],
+      "motion": "top-border colour 200ms · .gts-arrowlink",
+      "a11y": "h3 per tile · link text names the action"
+    },
+    {
+      "id": "how",
+      "name": "How it works",
+      "behaviour": "01 Call / 02 We come to you / 03 Back on the road. Accent-outlined numeral squares joined by a dashed rail (horizontal desktop, vertical mobile). Mono meta line in accent above each title.",
+      "shadcn": "none — semantic <ol>",
+      "tokens": [
+        "--surface",
+        "--accent",
+        "--bg"
+      ],
+      "motion": ".gts-reveal per step",
+      "a11y": "ordered list · numerals are decorative duplicates of order"
+    },
+    {
+      "id": "fleet",
+      "name": "Fleet split",
+      "behaviour": "Left 7: pitch, vehicle-type chips, fleet photo. Right 5: account card with accent top rule, spec rows (contracts, pricing, support) and a footer holding call + fleet-quote buttons.",
+      "shadcn": "Card, Badge, Button",
+      "tokens": [
+        "--surface",
+        "--surface-2",
+        "--accent",
+        "--grid-line"
+      ],
+      "motion": ".gts-reveal",
+      "a11y": "dl for spec rows · two distinct CTAs"
+    },
+    {
+      "id": "proof",
+      "name": "Proof grid",
+      "behaviour": "Ruled 4-up grid (2-up mobile). Index, large condensed accent stat, label. Section-level “All figures to confirm”; fourth stat is a blank.",
+      "shadcn": "none — grid of divs (or Card)",
+      "tokens": [
+        "--surface",
+        "--border",
+        "--accent"
+      ],
+      "motion": ".gts-reveal",
+      "a11y": "stats are text, not images · no count-up"
+    },
+    {
+      "id": "reviews",
+      "name": "Reviews",
+      "behaviour": "Placeholder only: three dashed figure blanks with an empty 5-box rating row. No invented quotes, names or ratings.",
+      "shadcn": "Card when content arrives",
+      "tokens": [
+        "--text-muted",
+        "--border"
+      ],
+      "motion": ".gts-reveal",
+      "a11y": "figure / blockquote / figcaption ready for real content"
+    },
+    {
+      "id": "area",
+      "name": "Service area",
+      "behaviour": "Blueprint map placeholder with a dashed 100-mile ring, crosshair and pulsing base marker. Spec rows (base, radius, hours), towns blank, shop-front photo slot.",
+      "shadcn": "AspectRatio, Card",
+      "tokens": [
+        "--bg",
+        "--accent",
+        "--grid-line"
+      ],
+      "motion": ".gts-beacon on base marker",
+      "a11y": "map is decorative; facts repeated as text"
+    },
+    {
+      "id": "faq",
+      "name": "FAQ accordion",
+      "behaviour": "Sticky intro left (desktop) with phone link. Numbered rows; open row gets --surface fill, accent number and a + rotating to ×. Panel animates grid-template-rows 220ms. Payment answer is a blank.",
+      "shadcn": "Accordion (type single, collapsible)",
+      "tokens": [
+        "--surface",
+        "--border",
+        "--accent"
+      ],
+      "motion": "rows 220ms · icon rotate 45°",
+      "a11y": "button aria-expanded · 64px rows"
+    },
+    {
+      "id": "final",
+      "name": "Final call band + form",
+      "behaviour": "Hazard edge (2 of 2). Live status, big H2, mono phone numeral, call button, spec line. Form card: Name + Phone (2-up desktop), “What’s going on?”, Fleet? switch, success / error alerts that repeat the number.",
+      "shadcn": "Input, Label, Textarea, Switch, Button, Alert",
+      "tokens": [
+        "--bg",
+        "--surface",
+        "--surface-2",
+        "--accent",
+        "--focus"
+      ],
+      "motion": ".gts-beacon · .gts-reveal · switch 180ms",
+      "a11y": "visible labels · inputs 52px · role=status / alert · noValidate with own messages"
+    },
+    {
+      "id": "footer",
+      "name": "Footer",
+      "behaviour": "Ink ground. Logo and one-line description, then Contact / Hours / Sister shop columns. Bottom rule with © Matt and Dom Enterprises LLC and address.",
+      "shadcn": "Separator",
+      "tokens": [
+        "--b-ink",
+        "--border",
+        "--text-muted"
+      ],
+      "motion": ".gts-arrowlink on links",
+      "a11y": "address element · 44px link targets"
+    },
+    {
+      "id": "bar",
+      "name": "Mobile sticky call bar",
+      "behaviour": "64px + safe-area inset. ~70% “Call 24/7 Dispatch” (primary), ~30% “Quote” (ghost). Shows after the hero call button scrolls away; hides when the final call band enters. Mobile only (< md).",
+      "shadcn": "Button × 2",
+      "tokens": [
+        "--bg",
+        "--border",
+        "--primary-*"
+      ],
+      "motion": "translateY + opacity 220ms",
+      "a11y": "aria-hidden + tabindex −1 while hidden · page has bottom padding so nothing sits under it"
+    }
+  ],
+  "tokens": {
+    "colour": {
+      "--bg": {
+        "hex": "#0B0D0C",
+        "use": "Page background",
+        "contrast": "base"
+      },
+      "--surface": {
+        "hex": "#16191A",
+        "use": "Cards, alternating bands",
+        "contrast": "text 16.3:1"
+      },
+      "--surface-2": {
+        "hex": "#22272A",
+        "use": "Raised elements, inputs",
+        "contrast": "text 13.9:1"
+      },
+      "--border": {
+        "hex": "#2C3235",
+        "use": "1px borders, rules",
+        "contrast": "1.5:1 (decorative)"
+      },
+      "--text": {
+        "hex": "#F5F6F3",
+        "use": "Headlines, body",
+        "contrast": "18.0:1"
+      },
+      "--text-muted": {
+        "hex": "#D4D4D4",
+        "use": "Secondary text, ghost edges",
+        "contrast": "13.2:1"
+      },
+      "--accent": {
+        "hex": "#8DC63F",
+        "use": "Fills, numerals, rules, focus (logo green)",
+        "contrast": "9.5:1"
+      },
+      "--primary-hover": {
+        "hex": "#9FD455",
+        "use": "Call button hover",
+        "contrast": "ink 11.2:1"
+      },
+      "--accent-ink": {
+        "hex": "#0B0D0C",
+        "use": "Text and icons on accent",
+        "contrast": "9.5:1 on accent"
+      },
+      "--focus": {
+        "hex": "#8DC63F",
+        "use": "2px ring, 3px offset",
+        "contrast": "9.5:1"
+      }
+    },
+    "type": [
+      {
+        "spec": "H1 · Archivo 900 · wdth 75 · clamp(2.5rem, 8vw + 1rem, 6.5rem) · lh .92 · −0.01em",
+        "font": "900 72px/.92 var(--font-display)",
+        "stretch": "75%",
+        "tt": "uppercase",
+        "ls": "-.01em",
+        "sample": "Day or night."
+      },
+      {
+        "spec": "H2 · 900 · 34 → 60px · lh .95",
+        "font": "900 44px/.95 var(--font-display)",
+        "stretch": "75%",
+        "tt": "uppercase",
+        "ls": "-.01em",
+        "sample": "Straight answers"
+      },
+      {
+        "spec": "H3 · 800 · 22 → 26px · lh 1",
+        "font": "800 26px/1 var(--font-display)",
+        "stretch": "75%",
+        "tt": "uppercase",
+        "ls": "0",
+        "sample": "Trailer repair"
+      },
+      {
+        "spec": "Stat · 900 · 44 → 72px · accent",
+        "font": "900 56px/.9 var(--font-display)",
+        "stretch": "75%",
+        "tt": "none",
+        "ls": "-.02em",
+        "sample": "$200"
+      },
+      {
+        "spec": "Body · Archivo 400 · 16px min · lh 1.55",
+        "font": "400 16px/1.55 var(--font-body)",
+        "stretch": "100%",
+        "tt": "none",
+        "ls": "0",
+        "sample": "Shop pricing is lower than roadside."
+      },
+      {
+        "spec": "Label · JetBrains Mono 500 · 10–12px · +0.08–0.1em · never paragraphs",
+        "font": "500 12px/1.4 var(--font-mono)",
+        "stretch": "100%",
+        "tt": "uppercase",
+        "ls": ".1em",
+        "sample": "Radius: 100 mi · Hours: 24/7 · Diagnostics: OEM"
+      },
+      {
+        "spec": "Phone numeral · JetBrains Mono 600 · 32 → 44px · accent",
+        "font": "600 36px/1 var(--font-mono)",
+        "stretch": "100%",
+        "tt": "none",
+        "ls": "-.03em",
+        "sample": "(770) 771-3468"
+      }
+    ],
+    "spacing": [
+      {
+        "n": "1 · 4",
+        "w": "12px",
+        "use": "hairline gaps"
+      },
+      {
+        "n": "2 · 8",
+        "w": "24px",
+        "use": "chip gaps"
+      },
+      {
+        "n": "3 · 12",
+        "w": "36px",
+        "use": "tile gaps"
+      },
+      {
+        "n": "4 · 16",
+        "w": "48px",
+        "use": "stacks"
+      },
+      {
+        "n": "5 · 20",
+        "w": "60px",
+        "use": "mobile gutter"
+      },
+      {
+        "n": "6 · 24",
+        "w": "72px",
+        "use": "card padding"
+      },
+      {
+        "n": "8 · 32",
+        "w": "96px",
+        "use": "block gaps"
+      },
+      {
+        "n": "14 · 56",
+        "w": "168px",
+        "use": "desktop gutter"
+      },
+      {
+        "n": "22 · 88",
+        "w": "260px",
+        "use": "section padding"
+      }
+    ],
+    "motion": [
+      {
+        "n": "--dur-instant",
+        "v": "100ms",
+        "use": "Colour shifts on press"
+      },
+      {
+        "n": "--dur-fast",
+        "v": "150ms",
+        "use": "Hover tints, switch track"
+      },
+      {
+        "n": "--dur-base",
+        "v": "220ms",
+        "use": "Accordion, bar show/hide, FAQ icon"
+      },
+      {
+        "n": "--dur-slow",
+        "v": "250ms",
+        "use": "Ceiling for any interaction"
+      },
+      {
+        "n": "--ease-out",
+        "v": "cubic-bezier(.2,.7,.2,1)",
+        "use": "Default for everything that enters"
+      },
+      {
+        "n": "--ease-in-out",
+        "v": "cubic-bezier(.65,0,.35,1)",
+        "use": "Reversible state changes"
+      },
+      {
+        "n": "--loop-beacon",
+        "v": "2.4s",
+        "use": "Live dot ring, nav pulse line"
+      },
+      {
+        "n": "--loop-signal",
+        "v": "2.6s",
+        "use": "Hero call button ring"
+      },
+      {
+        "n": "--loop-scan",
+        "v": "2.8s",
+        "use": "Hero eyebrow light bar"
+      },
+      {
+        "n": "press",
+        "v": "scale(.98) / .97",
+        "use": "All buttons, :active"
+      },
+      {
+        "n": "reveal",
+        "v": "translateY(16px) → 0",
+        "use": "view() timeline, entry 0–35%"
+      }
+    ],
+    "source": "src/design/tokens.css is the single source of truth; app.css exposes it to Tailwind v4"
+  },
+  "_provenance": "Extracted verbatim from docs/design/handoff.html (Design system handoff v1.0, dark only)."
+}

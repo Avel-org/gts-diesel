@@ -1,0 +1,92 @@
+/* tokens.css — GTS Diesel, dark only. Single source of truth. */
+:root {
+  /* colour */
+  --bg: #0B0D0C;
+  --surface: #16191A;
+  --surface-2: #22272A;
+  --border: #2C3235;
+  --text: #F5F6F3;
+  --text-muted: #D4D4D4;
+  --accent: #8DC63F;          /* sampled from logo */
+  --accent-ink: #0B0D0C;
+  --b-ink: #050606;            /* deepest ground: footer, code blocks */
+  --focus: var(--accent);
+  --primary-bg: var(--accent);
+  --primary-fg: var(--accent-ink);
+  --primary-border: var(--accent);
+  --primary-hover: #9FD455;
+  --mark: var(--accent);
+  --rule: var(--accent);
+  --grid-line: rgb(255 255 255 / .055);
+  --photo-overlay: rgb(0 0 0 / .35);
+  --shadow: 0 1px 2px rgb(0 0 0 / .5);
+
+  /* type */
+  --font-display: "Archivo", system-ui, sans-serif;  /* wdth 75 */
+  --font-body: "Archivo", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  /* shape */
+  --radius: 8px;  --radius-sm: 6px;  --radius-chip: 4px;
+
+  /* texture */
+  --grain-opacity: .04;
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");  /* SVG noise; paint at --grain-opacity */
+  --hazard: repeating-linear-gradient(45deg,
+    #0B0D0C 0 12px, transparent 12px 24px);
+
+  /* motion */
+  --dur-instant: 100ms;  --dur-fast: 150ms;
+  --dur-base: 220ms;     --dur-slow: 250ms;
+  --ease-out: cubic-bezier(.2,.7,.2,1);
+  --ease-in-out: cubic-bezier(.65,0,.35,1);
+  --loop-beacon: 2.4s;  --loop-signal: 2.6s;  --loop-scan: 2.8s;
+  /* WCAG 2.2.2: self-starting motion stops within 5 s */
+  --loop-beacon-count: 2;  --loop-signal-count: 1;  --loop-scan-count: 1;
+  color-scheme: dark;
+}
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
+
+@keyframes gts-beacon { 0% { transform: scale(1); opacity: .7 }
+  80%,100% { transform: scale(3.2); opacity: 0 } }
+@keyframes gts-scan { 0% { transform: translateX(-100%) }
+  60%,100% { transform: translateX(260%) } }
+@keyframes gts-signal { 0% { transform: scale(1); opacity: .55 }
+  70%,100% { transform: scale(1.08,1.35); opacity: 0 } }
+@keyframes gts-pulse-line { 0%,100% { transform: scaleX(.35); opacity: .6 }
+  50% { transform: scaleX(1); opacity: 1 } }
+@keyframes gts-rise { from { opacity: 0; transform: translateY(16px) }
+  to { opacity: 1; transform: none } }
+
+/* Hosts of ::before/::after effects need their own box and stacking context */
+.gts-beacon, .gts-signal, .gts-scan, .gts-navlink { position: relative; }
+.gts-signal { isolation: isolate; }
+.gts-scan { overflow: hidden; }
+
+.gts-beacon::after { content:""; position:absolute; inset:-1px;
+  border-radius:50%; background:var(--accent);
+  animation: gts-beacon var(--loop-beacon) var(--ease-out) var(--loop-beacon-count) both; }
+.gts-signal::before { content:""; position:absolute; inset:-1px;
+  border-radius:inherit; border:2px solid var(--accent); z-index:-1;
+  animation: gts-signal var(--loop-signal) ease-out var(--loop-signal-count) both; }
+.gts-scan::after { content:""; position:absolute; inset:0; width:40%;
+  background:linear-gradient(90deg, transparent, var(--text), transparent);
+  animation: gts-scan var(--loop-scan) var(--ease-out) var(--loop-scan-count) both; }
+.gts-navlink::after { content:""; position:absolute; left:0; right:0; bottom:0;
+  height:2px; background:var(--accent); transform:scaleX(0);
+  transform-origin:right; transition: transform var(--dur-slow) var(--ease-out); }
+.gts-navlink:hover::after, .gts-navlink:focus-visible::after { transform:scaleX(1); transform-origin:left; }
+.gts-navlink[aria-current]::after { transform:scaleX(1); }
+
+.gts-arrowlink { background-image: linear-gradient(var(--text), var(--text));
+  background-repeat:no-repeat; background-position:0 100%; background-size:0 2px;
+  transition: background-size var(--dur-slow) var(--ease-out); }
+.gts-arrowlink:hover, .gts-arrowlink:focus-visible { background-size:100% 2px; }
+.gts-arrowlink svg { transition: transform var(--dur-base) var(--ease-out); }
+.gts-arrowlink:hover svg, .gts-arrowlink:focus-visible svg { transform: translateX(4px); }
+@supports (animation-timeline: view()) {
+  .gts-reveal { animation: gts-rise linear both;
+    animation-timeline: view(); animation-range: entry 0% entry 35%; } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; } }

@@ -1,0 +1,5 @@
+{
+  "description": "The two widths the design was drawn at (design-spec.json -> breakpoints).",
+  "mobile": { "width": 390, "height": 844 },
+  "desktop": { "width": 1280, "height": 900 }
+}
