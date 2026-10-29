@@ -32,7 +32,10 @@ check(gts.includes('(770) 771-3468'), 'AC1 phone number in built HTML');
 check(gts.includes('530 Roswell St NE'), 'AC1 street address in built HTML');
 check(gts.includes('Marietta, GA 30060'), 'AC1 city, state and ZIP in built HTML');
 
-// AC2 — the 13 sections of R1, by the markers each renders.
+// AC2 — R1 names thirteen sections. The service area was removed on the
+// operator's instruction, so twelve are expected; the radius it stated still
+// appears in the hero eyebrow and the emergency band. A deliberate deviation
+// from R1, not a missing section.
 const order = [
   ['header', /<header\b/],
   ['hero', /id="top"/],
@@ -42,7 +45,6 @@ const order = [
   ['fleet services', /id="fleet"/],
   ['why GTS', /id="why"/],
   ['reviews', /id="reviews-h"/],
-  ['service area', /id="area"/],
   ['FAQ', /id="faq"/],
   ['final call band', /id="quote"/],
   ['footer', /<footer\b/],
@@ -60,7 +62,7 @@ for (const [name, re] of order) {
     ordered = false;
   } else cursor = at;
 }
-check(ordered, `AC2 all 13 sections present, in R1's order`);
+check(ordered, `AC2 all 12 remaining sections present, in R1's order`);
 
 // AC3 — React SSR puts <!-- --> between adjacent text nodes, so strip comments
 // and tags before reading each link's text.

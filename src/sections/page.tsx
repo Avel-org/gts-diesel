@@ -6,7 +6,6 @@ import { HowItWorks } from './how';
 import { Fleet } from './fleet';
 import { WhyGts } from './why';
 import { Reviews } from './reviews';
-import { ServiceArea } from './area';
 import { Faq } from './faq';
 import { FinalCall } from './final';
 import { Footer } from './footer';
@@ -28,7 +27,6 @@ export function Page({ content }: { content: PageContent }) {
         <Fleet content={content} />
         <WhyGts content={content} />
         <Reviews content={content} />
-        <ServiceArea content={content} />
         <Faq content={content} />
         <FinalCall content={content} />
       </main>

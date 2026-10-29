@@ -1,6 +1,11 @@
 {
-  "description": "Section order and anchors from design-spec.json -> sectionOrder.",
-  "anchors": ["#services", "#fleet", "#area", "#faq", "#quote"],
+  "description": "Section order and anchors. The service area section was removed on the operator's instruction; R1's other twelve remain.",
+  "anchors": [
+    "#services",
+    "#fleet",
+    "#faq",
+    "#quote"
+  ],
   "headings": [
     "Diesel truck & trailer repair. Day or night.",
     "Broken down right now?",

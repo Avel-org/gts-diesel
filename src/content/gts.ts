@@ -38,7 +38,6 @@ export const gts: PageContent = {
   fleetPhoto: said(
     photo('trailer-crane', 'A GTS technician working leased box trailers from the service truck crane', 1164, 1469),
   ),
-  shopPhoto: blank('Shop front photo', `Photo: shop front, ${business.street}`),
 
   // The three "to confirm" claims from the handoff. Still his-site, not mathew.
   proof: [

@@ -29,7 +29,6 @@ export const cowboys: PageContent = {
 
   heroPhoto: blank('Cowboys hero photo', 'Photo: radiator on the bench, warm shop light'),
   fleetPhoto: blank('Cowboys shop floor photo', 'Photo: Cowboys shop floor'),
-  shopPhoto: blank('Cowboys shop front photo', 'Photo: Cowboys shop front'),
 
   proof: [blank('Cowboys proof point 1'), blank('Cowboys proof point 2')],
 

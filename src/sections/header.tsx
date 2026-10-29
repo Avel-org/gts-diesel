@@ -9,7 +9,6 @@ import type { PageContent } from '../content/page';
 const nav = [
   ['#services', 'Services'],
   ['#fleet', 'Fleet'],
-  ['#area', 'Area'],
   ['#faq', 'FAQ'],
 ] as const;
 

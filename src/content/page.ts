@@ -57,7 +57,6 @@ export type PageContent = {
   ghostLabel: string;
   heroPhoto: Claim<Photo>;
   fleetPhoto: Claim<Photo>;
-  shopPhoto: Claim<Photo>;
   proof: Claim<string>[];
   servicesTitle: Claim<string>;
   specRow: Claim<string>;

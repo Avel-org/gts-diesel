@@ -33,7 +33,7 @@
     },
     {
       "source": "/service-area",
-      "destination": "/#area",
+      "destination": "/",
       "statusCode": 301
     },
     {
