@@ -58,3 +58,25 @@ Then the gate decides. Only a **verified** result ships; a **pass** isn't enough
 - Read `docs/design/` (the handoff, `tokens.css`, `design-spec.json`).
 - Check `docs/OPEN-BLANKS.md` for what's still unknown.
 - Search `src/components/ui/` before building a new component. Change the existing one rather than adding a near-copy.
+
+## Records (AVEL is down for maintenance)
+
+AVEL's command center is offline. Until it is back, every run is recorded by hand in `~/avel/records/gts-diesel/`, with the tool at `~/avel/records/bin/avel-log.mjs`. It all gets imported into AVEL later, so a record that's missing here is lost.
+
+- **Your dispatch id.** The operator opens each run with `dispatch-start` and gives you its id (`d-0001`, ...). Don't start work without one. One agent per terminal session.
+- **Stay in your territory.** The paths are in `~/avel/records/gts-diesel/project.json` under `roster`. Every file you change is recorded at close, and anything outside your paths is listed as `outsideTerritory`.
+- **Blockers.** If something you need is missing or forbidden, file it and stop. Don't route around it:
+
+  ```bash
+  node ~/avel/records/bin/avel-log.mjs blocker gts-diesel <d-id> --description "..." --workaround "..."
+  ```
+
+  Add `--gap` when the operator failed to provide it, rather than you failing.
+- **Findings (judges: Brennan, Zane).** File each defect. Judges never edit code:
+
+  ```bash
+  node ~/avel/records/bin/avel-log.mjs finding gts-diesel --by <brennan|zane> --rule <rule> --subject "<what>" --severity <critical|high|medium|low> --dispatch <d-id>
+  ```
+
+- **Finishing.** Say you're done, give your status (complete, blocked or failed) and list the files you read. The operator closes the dispatch, which records your files, commits and tokens.
+- **Never edit** anything under `~/avel/records/` by hand, and never run `dispatch-start`, `dispatch-close`, `gate` or `deliver`. Those are the operator's.
