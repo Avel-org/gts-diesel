@@ -18,3 +18,14 @@ playwright-report/
 # scripts/lhci.mjs. Ignored so it can never be committed.
 C:*
 lighthouse.*
+
+# Windows download metadata (NTFS alternate data stream artifacts)
+*:Zone.Identifier
+
+# Claude Code local settings (machine-specific; grants access to ~/avel/records)
+.claude/settings.local.json
+
+# AVEL hand-kept records live in their own repo at ~/avel/records and must
+# never be committed here.
+avel-records/
+import.json

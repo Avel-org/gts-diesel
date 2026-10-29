@@ -1,5 +1,10 @@
 # Editing the GTS Diesel site
 
+> **Status: this is the contract, not a description of a built site.**
+> `src/content/` does not exist yet — it is `gts-sections`' module (M2). The
+> shape below is what the brief's R4 and AC7/AC8 require, so build to it and
+> this guide stays true. Delete this note once the content layer lands.
+
 Everything a visitor reads lives in two files. You do not need to touch a
 component to change a word on the page.
 

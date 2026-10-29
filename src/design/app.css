@@ -33,21 +33,6 @@
   color: var(--text-muted);
 }
 
-@layer base {
-  /* Without this the dark tokens render on the browser's white canvas. */
-  html { background: var(--bg); scroll-behavior: smooth; }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
-    font: 400 16px/1.55 var(--font-body);
-    -webkit-font-smoothing: antialiased;
-  }
-  @media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
-  }
-}
-
 /* shadcn/ui variable bridge */
 :root {
   --background: var(--bg);        --foreground: var(--text);

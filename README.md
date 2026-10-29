@@ -10,7 +10,7 @@ The website for GTS Diesel Truck & Trailer Repair in Marietta, GA. The site does
 
 | | |
 |---|---|
-| App | Vite 7, React 19, TypeScript (strict) |
+| App | Vite, React 19, TypeScript (strict) |
 | Routing | React Router v7, every page pre-rendered at build time |
 | Styling | Tailwind CSS v4, shadcn/ui, design tokens in `src/design/tokens.css` |
 | Fonts | Archivo and JetBrains Mono, self-hosted with Fontsource |
@@ -23,7 +23,6 @@ The website for GTS Diesel Truck & Trailer Repair in Marietta, GA. The site does
 |---|---|
 | `/` | GTS Diesel: the landing page |
 | `/cowboys-radiator` | The sister business, Cowboys Radiator |
-| `/404` | Pre-rendered, so an unmatched path still offers the phone number |
 
 ## Getting started
 
@@ -40,35 +39,28 @@ pnpm dev                 # http://localhost:5173
 |---|---|
 | `pnpm dev` | Local dev server |
 | `pnpm build` | Pre-rendered production build, and prints the list of open blanks |
-| `pnpm preview` | Serves the built site the way the host does, on :4173 |
-| `pnpm typecheck` | TypeScript check (`tsc -b`, both projects) |
+| `pnpm typecheck` | TypeScript check |
 | `pnpm test` | Unit tests (content, tokens, SEO, redirects, form, analytics) |
-| `pnpm test:e2e` | Browser tests (call buttons, sticky bar, Cowboys page, motion budget) |
-| `pnpm a11y` | axe accessibility check on both pages, at both design widths |
+| `pnpm test:e2e` | Browser tests (call buttons, sticky bar, Cowboys page) |
+| `pnpm a11y` | axe accessibility check on both pages |
 | `pnpm lhci` | Lighthouse on mobile |
-| `pnpm blanks` | Reprints the open blanks and rewrites `docs/OPEN-BLANKS.md` |
-
-`pnpm a11y` and `pnpm lhci` need a browser. Once: `npx playwright install chromium`. Lighthouse also wants `CHROME_PATH` pointed at a full Chrome build.
 
 ## Project layout
 
 ```
 src/
   design/        tokens.css, app.css: colour, type, shape, motion
-  components/ui/ shadcn-shaped components, themed with the tokens
-  sections/      one file per page section, composed by sections/page.tsx
-  content/       all page copy, every claim with a source
-  routes/        the two pages, plus the 404
-  lib/           head and schema, the call helper, class joining
+  components/ui/ shadcn components, themed with the tokens
+  sections/      one file per page section
+  content/       all page copy, one file, every claim with a source
+  routes/        the two pages
 api/             quote form function
-public/          robots.txt, sitemap.xml, favicon, uploads/
-scripts/         prerender, blanks, a11y
+public/          robots.txt, images, favicon
 docs/
-  design/        handoff.html, design-spec.json, components.json,
-                 DESIGN-RATIONALE.md, prototype/
+  design/        the approved design handoff and spec
   HANDOFF.md     how Mathew edits content
-  OPEN-BLANKS.md what we still need from him (generated)
-tests/           unit tests, and e2e/ for the browser tests
+  OPEN-BLANKS.md what we still need from him
+tests/           unit tests
 fixtures/golden/ browser scenarios
 vercel.json      redirects from the old site's paths
 ```
@@ -92,19 +84,6 @@ Don't write a fact into a component. If it isn't in the content file, it doesn't
 
 The full rules and the avoid list are in `docs/design/`.
 
-## The design handoff
-
-`docs/design/handoff.html` is the approved handoff, delivered as a self-unpacking page — open it in a browser. Everything a build needs has been extracted out of it into files:
-
-| File | What it is |
-|---|---|
-| `design-spec.json` | The machine-readable contract: tokens, section order, accent and motion rules, a11y targets |
-| `components.json` | The thirteen components, with their states, tokens and a11y notes |
-| `DESIGN-RATIONALE.md` | The six design rules, and why |
-| `prototype/` | The original two-brand prototype, for reference |
-
-`src/design/tokens.css` is the source of truth. `design-spec.json` describes it; it does not override it.
-
 ## Environment variables
 
 Set these in Vercel's project settings. Never in the repo.
@@ -116,4 +95,8 @@ Set these in Vercel's project settings. Never in the repo.
 
 ## Deploying
 
-Pushes to `main` deploy to production on Vercel. Every pull request gets a preview URL. Old site paths (`/fleet-services`, `/contact`, …) redirect with a 301 through `vercel.json`, which also sets `cleanUrls` so `/cowboys-radiator` serves without a trailing slash.
+Pushes to `main` deploy to production on Vercel. Every pull request gets a preview URL. Old site paths (`/fleet-services`, `/contact`, …) redirect with a 301 through `vercel.json`.
+
+---
+
+**Status:** the design handoff is extracted into `docs/design/` and the toolchain is pinned. The source tree above is the target, not the current state — see `docs/TOOLCHAIN-NOTES.md` before you start.
