@@ -65,6 +65,12 @@ describe('open blanks are discoverable', () => {
     expect(found.every((b) => b.need.length > 0)).toBe(true);
   });
 
+  it('still asks about towns served, now as an open question not a page slot', () => {
+    // The dashed box came off the service-area section; the ask did not.
+    const asks = collectBlanks(openQuestions, 'ask').map((b) => b.need);
+    expect(asks.some((n) => /towns and highways served/i.test(n))).toBe(true);
+  });
+
   it('GTS still has the four known gaps', () => {
     const needs = collectBlanks(gts, 'gts').map((b) => b.need);
     expect(needs).toContain('Payment methods accepted');
