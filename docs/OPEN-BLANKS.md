@@ -64,4 +64,81 @@ The first four unblock the GTS page:
 Keep the markers — whatever writes the list should replace what sits between them.
 
 <!-- blanks:start -->
+| # | Where | What we need |
+|---|---|---|
+| 1 | `gts.heroPhoto` | Hero photo |
+| 2 | `gts.fleetPhoto` | Fleet photo |
+| 3 | `gts.shopPhoto` | Shop front photo |
+| 4 | `gts.townsServed` | Towns served list |
+| 5 | `gts.services.0.photo` | Roadside photo |
+| 6 | `gts.services.1.photo` | Diagnostics photo |
+| 7 | `gts.services.2.photo` | Truck repair photo |
+| 8 | `gts.services.3.photo` | Trailer repair photo |
+| 9 | `gts.services.4.photo` | Fleet lot photo |
+| 10 | `gts.reviews.0` | Customer review 1 (name, town, words) |
+| 11 | `gts.reviews.1` | Customer review 2 (name, town, words) |
+| 12 | `gts.reviews.2` | Customer review 3 (name, town, words) |
+| 13 | `gts.faqs.4.a` | Payment methods accepted |
+| 14 | `cowboys.heroPhoto` | Cowboys hero photo |
+| 15 | `cowboys.fleetPhoto` | Cowboys shop floor photo |
+| 16 | `cowboys.shopPhoto` | Cowboys shop front photo |
+| 17 | `cowboys.proof.0` | Cowboys proof point 1 |
+| 18 | `cowboys.proof.1` | Cowboys proof point 2 |
+| 19 | `cowboys.townsServed` | Cowboys towns served list |
+| 20 | `cowboys.specRow` | Cowboys hours |
+| 21 | `cowboys.services.0.benefit` | Radiator repair: one-line benefit |
+| 22 | `cowboys.services.0.photo` | Radiator photo |
+| 23 | `cowboys.services.0.items.0` | Radiator repair: checklist item |
+| 24 | `cowboys.services.0.items.1` | Radiator repair: checklist item |
+| 25 | `cowboys.services.0.items.2` | Radiator repair: checklist item |
+| 26 | `cowboys.services.1.benefit` | Cooling system repair: one-line benefit |
+| 27 | `cowboys.services.1.photo` | Cooling system photo |
+| 28 | `cowboys.services.1.items.0` | Cooling system repair: checklist item |
+| 29 | `cowboys.services.1.items.1` | Cooling system repair: checklist item |
+| 30 | `cowboys.services.1.items.2` | Cooling system repair: checklist item |
+| 31 | `cowboys.services.2.title` | Cowboys service 3: name |
+| 32 | `cowboys.services.2.benefit` | Cowboys service 3: one-line benefit |
+| 33 | `cowboys.services.2.photo` | Cowboys service 3 photo |
+| 34 | `cowboys.services.2.items.0` | Cowboys service 3: checklist item |
+| 35 | `cowboys.services.2.items.1` | Cowboys service 3: checklist item |
+| 36 | `cowboys.services.3.title` | Cowboys service 4: name |
+| 37 | `cowboys.services.3.benefit` | Cowboys service 4: one-line benefit |
+| 38 | `cowboys.services.3.photo` | Cowboys service 4 photo |
+| 39 | `cowboys.services.3.items.0` | Cowboys service 4: checklist item |
+| 40 | `cowboys.services.3.items.1` | Cowboys service 4: checklist item |
+| 41 | `cowboys.services.4.title` | Cowboys service 5: name |
+| 42 | `cowboys.services.4.benefit` | Cowboys service 5: one-line benefit |
+| 43 | `cowboys.services.4.photo` | Cowboys service 5 photo |
+| 44 | `cowboys.services.4.items.0` | Cowboys service 5: checklist item |
+| 45 | `cowboys.services.4.items.1` | Cowboys service 5: checklist item |
+| 46 | `cowboys.steps.0.meta` | Step 1 meta |
+| 47 | `cowboys.steps.0.body` | Step 1 body |
+| 48 | `cowboys.steps.1.meta` | Step 2 meta |
+| 49 | `cowboys.steps.1.body` | Step 2 body |
+| 50 | `cowboys.steps.2.meta` | Step 3 meta |
+| 51 | `cowboys.steps.2.body` | Step 3 body |
+| 52 | `cowboys.stats.0.value` | Cowboys stat 1 |
+| 53 | `cowboys.stats.1.value` | Cowboys stat 2 |
+| 54 | `cowboys.stats.2.value` | Cowboys stat 3 |
+| 55 | `cowboys.stats.3.value` | Cowboys stat 4 |
+| 56 | `cowboys.reviews.0` | Cowboys review 1 |
+| 57 | `cowboys.reviews.1` | Cowboys review 2 |
+| 58 | `cowboys.reviews.2` | Cowboys review 3 |
+| 59 | `cowboys.faqs.0.q` | Cowboys FAQ 1: question |
+| 60 | `cowboys.faqs.0.a` | Cowboys FAQ 1: answer |
+| 61 | `cowboys.faqs.1.q` | Cowboys FAQ 2: question |
+| 62 | `cowboys.faqs.1.a` | Cowboys FAQ 2: answer |
+| 63 | `cowboys.faqs.2.q` | Cowboys FAQ 3: question |
+| 64 | `cowboys.faqs.2.a` | Cowboys FAQ 3: answer |
+| 65 | `cowboys.llc` | Cowboys legal entity |
+| 66 | `cowboys.addressLines.0` | Cowboys street address |
+| 67 | `ask.0` | Vector logo — we only have a raster white-on-ink PNG from the handoff |
+| 68 | `ask.1` | Highways served, not just towns, for the service-area section |
+| 69 | `ask.2` | "DPS system repairs" on his old site: is it DPF (diesel particulate filter)? Do not print DPF until he confirms |
+| 70 | `ask.3` | The 573-855-0518 WhatsApp number on his old site: still current, or remove it |
+| 71 | `ask.4` | Commercial trucks only, or personal vehicles too — his old site said both |
+| 72 | `ask.5` | Fleet billing terms, alongside the payment methods |
+| 73 | `ask.6` | The email address the quote form sends to — old structured data listed dottavioenterprises@yahoo.com, unconfirmed |
+| 74 | `ask.7` | Manager access to the Google Business Profile, before any review can be used |
+| 75 | `ask.8` | Cowboys Radiator: whether it shares the GTS location, and its own logo and colours |
 <!-- blanks:end -->

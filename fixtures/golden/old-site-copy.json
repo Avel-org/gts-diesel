@@ -1,0 +1,46 @@
+{
+  "description": "Section 8 of the Canon brief: copy from Mathew's old Duda site, verbatim. AC6 requires every service specific to match this wording. Do not paraphrase; if a claim is not in here it is not sourced from his site.",
+  "services": {
+    "emergency-roadside": [
+      "Big jobs roadside, no problem. We'll do a clutch on the side of the road.",
+      "Engines, brakes, transmissions, suspension, trailer repairs, refrigerated trailer engines, drive shafts, electrical, heating and AC.",
+      "Even if you're 100 miles away from us."
+    ],
+    "computer-diagnostics": [
+      "factory (OEM) software for all brands",
+      "Advanced computer diagnostics",
+      "forced regeneration",
+      "reduced-power diagnostics",
+      "advanced electrical troubleshooting"
+    ],
+    "general-truck-repair": [
+      "shop pricing is lower than roadside",
+      "Engines, brakes, transmissions, suspension, drive shafts, electrical, heating and AC."
+    ],
+    "trailer-repair": [
+      "brakes and air systems",
+      "air lines and hoses",
+      "suspension",
+      "refrigerated trailers and air chutes",
+      "trailer legs, bumpers and bushings",
+      "interior repairs",
+      "trailer electrical",
+      "roadside trailer repair"
+    ],
+    "fleet-services": [
+      "tailored contracts, special pricing, 24/7 support",
+      "vans, semi-trucks and trailers, buses, tow trucks, box trucks"
+    ]
+  },
+  "howItWorks": [
+    "a free phone consultation",
+    "If we can't fix it on the spot, we'll bring your vehicle to our shop."
+  ],
+  "whyGts": [
+    "30+ years combined experience",
+    "24/7 emergency roadside",
+    "$200 referral discounts",
+    "free phone consultations"
+  ],
+  "heroLine": "Your stop for diesel truck repairs in Marietta, GA."
+}

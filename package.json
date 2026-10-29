@@ -6,6 +6,18 @@
   "engines": {
     "node": ">=20.19"
   },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && vite build --ssr src/entry-server.tsx --outDir dist-ssr && node scripts/prerender.mjs && node scripts/check-prerender.mjs",
+    "preview": "vite preview --port 4173",
+    "typecheck": "tsc -b --force",
+    "test": "node scripts/test.mjs",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "a11y": "node scripts/a11y.mjs",
+    "lhci": "node scripts/lhci.mjs",
+    "blanks": "node scripts/blanks.mjs"
+  },
   "dependencies": {
     "@fontsource-variable/archivo": "^5.2.5",
     "@fontsource/jetbrains-mono": "^5.2.5",
@@ -16,6 +28,7 @@
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.10.1",
+    "@lhci/cli": "^0.15.0",
     "@playwright/test": "^1.64.1",
     "@tailwindcss/vite": "^4.3.3",
     "@testing-library/dom": "^10.4.0",
@@ -24,7 +37,6 @@
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^5.2.0",
-    "@lhci/cli": "^0.15.0",
     "jsdom": "^26.0.0",
     "tailwindcss": "^4.3.3",
     "typescript": "^5.9.3",

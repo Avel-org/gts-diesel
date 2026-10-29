@@ -1,0 +1,13 @@
+{
+  "description": "Every way a visitor can reach the phone. Written from the brief: the page has one goal, the visitor calls.",
+  "tel": "tel:+17707713468",
+  "scenarios": [
+    { "name": "header", "viewport": "desktop", "selector": "[data-call=\"header\"]" },
+    { "name": "hero", "viewport": "both", "selector": "[data-call=\"hero\"]" },
+    { "name": "emergency band", "viewport": "both", "selector": "[data-call=\"emergency\"]" },
+    { "name": "fleet", "viewport": "both", "selector": "[data-call=\"fleet\"]" },
+    { "name": "final band", "viewport": "both", "selector": "[data-call=\"final\"]" },
+    { "name": "footer", "viewport": "both", "selector": "[data-call=\"footer\"]" },
+    { "name": "mobile sticky bar", "viewport": "mobile", "selector": "[data-call=\"sticky\"]" }
+  ]
+}

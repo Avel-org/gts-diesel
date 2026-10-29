@@ -22,8 +22,8 @@
   --shadow: 0 1px 2px rgb(0 0 0 / .5);
 
   /* type */
-  --font-display: "Archivo", system-ui, sans-serif;  /* wdth 75 */
-  --font-body: "Archivo", system-ui, sans-serif;
+  --font-display: "Archivo Variable", system-ui, sans-serif;  /* wdth 75 */
+  --font-body: "Archivo Variable", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 
   /* shape */
