@@ -8,7 +8,7 @@ import type { PageContent } from '../content/page';
  */
 export function WhyGts({ content }: { content: PageContent }) {
   return (
-    <section id="why" aria-labelledby="why-h" className="px-5 md:px-16 py-12 border-y border-border scroll-mt-16">
+    <section id="why" aria-labelledby="why-h" className="px-5 md:px-16 py-12 border-y border-border scroll-mt-16 md:scroll-mt-20">
       <h2 id="why-h" className="sr-only">
         Why GTS
       </h2>

@@ -51,7 +51,14 @@ export function Hero({ content }: { content: PageContent }) {
           </ul>
         </div>
 
-        <PhotoFrame claim={content.heroPhoto} priority className="aspect-[4/3] md:aspect-[3/4]" />
+        <PhotoFrame
+          claim={content.heroPhoto}
+          priority
+          slot="aspect-[4/3] md:aspect-[3/4]"
+          mobileCrop="aspect-[4/3]"
+          // Column 2 of 1.15fr/1fr, after 2×64px padding and a 56px gap.
+          sizes={(max) => `(min-width: 768px) min(${max}px, calc((100vw - 184px) / 2.15)), calc(100vw - 40px)`}
+        />
       </div>
     </section>
   );

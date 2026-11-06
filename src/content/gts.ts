@@ -10,14 +10,32 @@ import { business } from './business';
 import { blank, said, site } from './types';
 import type { PageContent, Photo } from './page';
 
-/** Photographs Mathew supplied. Served from public/uploads. */
-const photo = (name: string, alt: string, width: number, height: number): Photo => ({
-  src: `/uploads/${name}.jpg`,
-  webp: [400, 800].map((w) => ({ src: `/uploads/${name}-${w}.webp`, width: w })),
-  alt,
-  width,
-  height,
-});
+/**
+ * Photographs Mathew supplied. Served from public/uploads. `width` and `height`
+ * are the JPEG's true pixel size (tests/photos.test.ts reads the files to
+ * check). The AVIF/WebP ladder is built by scripts/images.mjs and never
+ * upscales past the source.
+ */
+const LADDER = [400, 640, 800];
+const photo = (
+  name: string,
+  alt: string,
+  width: number,
+  height: number,
+  focal?: string,
+): Photo => {
+  const rungs = LADDER.filter((w) => w <= width);
+  return {
+    src: `/uploads/${name}.jpg`,
+    avif: rungs.map((w) => ({ src: `/uploads/${name}-${w}.avif`, width: w })),
+    webp: rungs.map((w) => ({ src: `/uploads/${name}-${w}.webp`, width: w })),
+    alt,
+    width,
+    height,
+    ratio: `${width} / ${height}`,
+    ...(focal ? { focal } : {}),
+  };
+};
 
 export const gts: PageContent = {
   brand: 'gts',
@@ -33,10 +51,10 @@ export const gts: PageContent = {
   ghostLabel: 'Get a fleet quote',
 
   heroPhoto: said(
-    photo('service-truck-yard', "The GTS service truck and its crane in the yard, alongside a forklift and a reefer trailer", 1152, 1146),
+    photo('service-truck-yard', "The GTS service truck and its crane in the yard, alongside a forklift and a reefer trailer", 800, 796, 'center 70%'),
   ),
   fleetPhoto: said(
-    photo('trailer-crane', 'A GTS technician working leased box trailers from the service truck crane', 1164, 1469),
+    photo('trailer-crane', 'A GTS technician working leased box trailers from the service truck crane', 800, 1010),
   ),
 
   // The three "to confirm" claims from the handoff. Still his-site, not mathew.
@@ -57,7 +75,7 @@ export const gts: PageContent = {
       benefit: site('Big jobs roadside, no problem.'),
       icon: 'zap',
       large: true,
-      photo: said(photo('roadside-brake-job', 'A wheel off at the roadside, service van alongside', 1170, 565)),
+      photo: said(photo('roadside-brake-job', 'A wheel off at the roadside, service van alongside', 800, 386)),
       items: [
         site("We'll do a clutch on the side of the road"),
         site("Even if you're 100 miles away from us"),
@@ -75,39 +93,51 @@ export const gts: PageContent = {
         site('Forced regeneration'),
         site('Reduced-power diagnostics'),
         site('Advanced electrical troubleshooting'),
+        // From Mathew, 2026-11-06. Brand names as plain text only, no logos.
+        said('PACCAR, Caterpillar, Volvo, Freightliner and Detroit specialists'),
       ],
     },
     {
       title: site('General truck repair'),
       benefit: site('Shop pricing is lower than roadside.'),
       icon: 'wrench',
-      photo: said(photo('engine-out', 'A diesel engine out on the hoist in the yard', 1170, 538)),
+      photo: said(photo('engine-out', 'A diesel engine out on the hoist in the yard', 800, 368)),
       items: [
         site('Engines, brakes, transmissions'),
         site('Suspension, drive shafts'),
-        site('Electrical'),
         site('Heating and AC'),
+        // From Mathew, 2026-11-06. Replaces the old site's bare "Electrical".
+        said('Advanced transmission diagnostics: Eaton Fuller and Mack mDRIVE'),
+        said('Advanced electrical diagnostics'),
+        said('CAN bus communication diagnostics'),
+        said('Wiring harness repair'),
+        said('Frame and structural repair'),
       ],
     },
     {
       title: site('Trailer repair'),
       benefit: site('Brakes and air systems to reefers.'),
       icon: 'box',
-      photo: said(photo('trailer-crane', 'Box trailers opened up for repair, worked from the crane', 1164, 1469)),
+      photo: said(photo('trailer-crane', 'Box trailers opened up for repair, worked from the crane', 800, 1010)),
       items: [
         site('Brakes and air systems'),
         site('Air lines and hoses'),
         site('Refrigerated trailers and air chutes'),
         site('Trailer legs, bumpers and bushings'),
+        // From Mathew, 2026-11-06.
+        said('Structural door repair'),
+        said('Aluminum floor repair'),
+        said('Aluminum welding'),
       ],
     },
     {
       title: site('Fleet services'),
       benefit: site('Tailored contracts, special pricing, 24/7 support.'),
       icon: 'users',
-      photo: said(photo('semi-hood-up', 'A semi tractor with the hood up, worked on where it sat', 872, 880)),
+      photo: said(photo('semi-hood-up', 'A semi tractor with the hood up, worked on where it sat', 800, 807)),
       items: [
         site('Tailored contracts, special pricing'),
+        said('Non-contract options available'), // From Mathew, 2026-11-06.
         site('24/7 support'),
         site('Vans, semi-trucks and trailers'),
         site('Buses, tow trucks, box trucks'),
