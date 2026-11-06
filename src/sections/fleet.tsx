@@ -8,9 +8,13 @@ export function Fleet({ content }: { content: PageContent }) {
   const call = callFor(content);
   const fleet = content.services.find((s) => s.icon === 'users') ?? content.services[0];
   return (
-    <section id="fleet" className="px-5 md:px-16 py-14 md:py-20 scroll-mt-16">
+    <section id="fleet" className="px-5 md:px-16 py-14 md:py-20 scroll-mt-16 md:scroll-mt-20">
       <div className="grid gap-8 md:grid-cols-2 md:items-center">
-        <PhotoFrame claim={content.fleetPhoto} className="aspect-[4/3]" />
+        <PhotoFrame
+          claim={content.fleetPhoto}
+          // Half of the row, after 2×64px padding and a 32px gap.
+          sizes={(max) => `(min-width: 768px) min(${max}px, calc((100vw - 160px) / 2)), calc(100vw - 40px)`}
+        />
         <div>
           <p className="label-mono mb-4">Fleet accounts</p>
           <h2 className="h-display text-[clamp(2rem,6vw,3rem)] text-text mb-4">

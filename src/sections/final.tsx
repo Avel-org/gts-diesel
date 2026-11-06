@@ -11,7 +11,7 @@ import type { PageContent } from '../content/page';
 export function FinalCall({ content }: { content: PageContent }) {
   const call = callFor(content);
   return (
-    <section id="quote" className="scroll-mt-16 border-t border-border">
+    <section id="quote" className="scroll-mt-16 md:scroll-mt-20 border-t border-border">
       <HazardStripe />
       <div className="px-5 md:px-16 py-14 md:py-20 grid gap-10 md:grid-cols-2 md:items-start">
         <div>

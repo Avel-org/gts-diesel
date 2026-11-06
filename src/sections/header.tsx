@@ -15,16 +15,25 @@ const nav = [
 export function Header({ content }: { content: PageContent }) {
   const call = callFor(content);
   return (
-    <header className="sticky top-0 z-20 flex items-center gap-2.5 h-16 px-5 md:px-16 bg-bg border-b border-border">
+    <header className="sticky top-0 z-20 flex items-center gap-2.5 md:gap-5 h-16 md:h-20 px-5 md:px-16 bg-bg border-b border-border">
       {content.brand === 'gts' ? (
         <Link to="/" aria-label={`${content.name} ${content.sub}`} className="block shrink-0">
-          <img
-            src="/uploads/gts-logo-white-on-ink.png"
-            alt=""
-            width={118}
-            height={38}
-            className="w-[118px] h-auto"
-          />
+          {/*
+            Trimmed logo (scripts/images.mjs), 248×69 px. Mobile keeps the old
+            visual size (~86px). Desktop is 186px: on a 2x screen that's a
+            1.5x upscale, the most this raster takes before going soft. A
+            vector logo from Mathew would allow bigger.
+          */}
+          <picture>
+            <source type="image/webp" srcSet="/uploads/gts-logo-header.webp" />
+            <img
+              src="/uploads/gts-logo-header.png"
+              alt=""
+              width={248}
+              height={69}
+              className="block w-[86px] md:w-[186px] h-auto"
+            />
+          </picture>
         </Link>
       ) : (
         <Link to="/cowboys-radiator" className="flex flex-col leading-none no-underline text-text">

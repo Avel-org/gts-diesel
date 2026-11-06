@@ -29,14 +29,22 @@ function Tile({ s, large }: { s: Service; large: boolean }) {
           ))}
         </ul>
       </div>
-      {large && <PhotoFrame claim={s.photo} className="md:w-2/5 aspect-[4/3] shrink-0" />}
+      {large && (
+        <PhotoFrame
+          claim={s.photo}
+          className="md:w-2/5 shrink-0"
+          // 2/5 of the tile's content box: 2×64px section padding, 2×24px
+          // tile padding, 2px border. Below md the tile is full width.
+          sizes={(max) => `(min-width: 768px) min(${max}px, calc((100vw - 178px) * 0.4)), calc(100vw - 90px)`}
+        />
+      )}
     </article>
   );
 }
 
 export function Services({ content }: { content: PageContent }) {
   return (
-    <section id="services" className="px-5 md:px-16 py-14 md:py-20 scroll-mt-16">
+    <section id="services" className="px-5 md:px-16 py-14 md:py-20 scroll-mt-16 md:scroll-mt-20">
       <div className="flex flex-wrap items-baseline justify-between gap-4 mb-8">
         <h2 className="h-display text-[clamp(2rem,6vw,3.25rem)] text-text">
           <Text claim={content.servicesTitle} />

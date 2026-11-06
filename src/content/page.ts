@@ -4,11 +4,18 @@ import type { Claim } from './types';
 export type Photo = {
   /** JPEG fallback, served from public/uploads. */
   src: string;
-  /** webp widths offered to the browser, smallest first. */
+  /** AVIF widths offered to the browser, smallest first (scripts/images.mjs). */
+  avif: Array<{ src: string; width: number }>;
+  /** WebP widths offered to the browser, smallest first. */
   webp: Array<{ src: string; width: number }>;
   alt: string;
+  /** The JPEG's true pixel size. tests/photos.test.ts checks it. */
   width: number;
   height: number;
+  /** CSS aspect-ratio from the true size, e.g. '800 / 796'. Used at md and up. */
+  ratio: string;
+  /** object-position for slots that still crop (mobile only), e.g. 'center 70%'. */
+  focal?: string;
 };
 
 /**
